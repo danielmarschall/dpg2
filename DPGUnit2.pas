@@ -102,10 +102,12 @@ type
     constructor Create(AParent: TSprite); override;
   end;
 
+  TRichtung = (rUnknown, rUp, rDown, rLeft, rRight);
+
   TDino = class(TImageSprite)
   private
     FCounter: Integer;
-    procedure DinoMove(MoveCount: integer; course: string);
+    procedure DinoMove(MoveCount: integer; course: TRichtung);
     procedure Hit;
   protected
     procedure DoMove(MoveCount: Integer); override;
@@ -116,7 +118,7 @@ type
   TPanzer = class(TImageSprite)
   private
     FPanzerStop: boolean;
-    procedure PanzerMove(MoveCount: integer; course: string);
+    procedure PanzerMove(MoveCount: integer; course: TRichtung);
   protected
     procedure DoCollision(Sprite: TSprite; var Done: Boolean); override;
     procedure DoMove(MoveCount: Integer); override;
@@ -174,13 +176,28 @@ begin
   Z := 1;
 end;
 
-procedure TDino.DinoMove(MoveCount: integer; course: string);
+procedure TDino.DinoMove(MoveCount: integer; course: TRichtung);
 begin
-  if course = 'O' then Y := Y - (300/1000)*MoveCount;
-  if course = 'U' then Y := Y + (300/1000)*MoveCount;
-  if course = 'L' then X := X - (300/1000)*MoveCount;
-  if course = 'R' then X := X + (300/1000)*MoveCount;
-  Image := SpielForm.dxImageList.Items.Find('Dino'+course);
+  if course = rUp then
+  begin
+    Y := Y - (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('DinoO');
+  end;
+  if course = rDown then
+  begin
+    Y := Y + (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('DinoU');
+  end;
+  if course = rLeft then
+  begin
+    X := X - (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('DinoL');
+  end;
+  if course = rRight then
+  begin
+    X := X + (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('DinoR');
+  end;
 end;
 
 procedure TDino.DoMove(MoveCount: Integer);
@@ -216,45 +233,45 @@ begin
           if panzery=dinoy then
           begin
             if dinoy>SpielForm.dxdraw.height div 2 then
-              DinoMove(MoveCount, 'O');
+              DinoMove(MoveCount, rUp);
             if panzery<SpielForm.dxdraw.height div 2 then
-              DinoMove(MoveCount, 'U');
+              DinoMove(MoveCount, rDown);
             if panzery=SpielForm.dxdraw.height div 2 then
             begin
-              if random(2)=1 then DinoMove(MoveCount, 'O') else
-                DinoMove(MoveCount, 'U');
+              if random(2)=1 then DinoMove(MoveCount, rUp) else
+                DinoMove(MoveCount, rDown);
             end;
           end;
-          if (dinox<>panzerx) and (dinoy<panzery) then DinoMove(MoveCount, 'O');
-          if (dinox<>panzerx) and (dinoy>panzery) then DinoMove(MoveCount, 'U');
+          if (dinox<>panzerx) and (dinoy<panzery) then DinoMove(MoveCount, rUp);
+          if (dinox<>panzerx) and (dinoy>panzery) then DinoMove(MoveCount, rDown);
           if dinox=panzerx then
           begin
-            if dinox<SpielForm.dxdraw.Width div 2 then DinoMove(MoveCount, 'R');
-            if dinox>SpielForm.dxdraw.Width div 2 then DinoMove(MoveCount, 'L');
+            if dinox<SpielForm.dxdraw.Width div 2 then DinoMove(MoveCount, rRight);
+            if dinox>SpielForm.dxdraw.Width div 2 then DinoMove(MoveCount, rLeft);
             if dinox=SpielForm.dxdraw.Width div 2 then
             begin
-              if random(2)=1 then DinoMove(MoveCount, 'L') else
-                DinoMove(MoveCount, 'R');
+              if random(2)=1 then DinoMove(MoveCount, rLeft) else
+                DinoMove(MoveCount, rRight);
             end;
           end;
-          if (dinoy<>panzery) and (dinox<panzerx) then DinoMove(MoveCount, 'L');
-          if (dinoy<>panzery) and (dinox>panzerx) then DinoMove(MoveCount, 'R');
+          if (dinoy<>panzery) and (dinox<panzerx) then DinoMove(MoveCount, rLeft);
+          if (dinoy<>panzery) and (dinox>panzerx) then DinoMove(MoveCount, rRight);
         end
         else
         begin
-          if dinoy<panzery then DinoMove(MoveCount, 'O');
-          if dinoy>panzery then DinoMove(MoveCount, 'U');
-          if dinox<panzerx then DinoMove(MoveCount, 'L');
-          if dinox>panzerx then DinoMove(MoveCount, 'R');
+          if dinoy<panzery then DinoMove(MoveCount, rUp);
+          if dinoy>panzery then DinoMove(MoveCount, rDown);
+          if dinox<panzerx then DinoMove(MoveCount, rLeft);
+          if dinox>panzerx then DinoMove(MoveCount, rRight);
         end;
       end;
     end
     else
     begin
-      if isButton3 in SpielForm.DXInput.States then DinoMove(MoveCount, 'O');
-      if isButton4 in SpielForm.DXInput.States then DinoMove(MoveCount, 'U');
-      if isButton5 in SpielForm.DXInput.States then DinoMove(MoveCount, 'L');
-      if isButton6 in SpielForm.DXInput.States then DinoMove(MoveCount, 'R');
+      if isButton3 in SpielForm.DXInput.States then DinoMove(MoveCount, rUp);
+      if isButton4 in SpielForm.DXInput.States then DinoMove(MoveCount, rDown);
+      if isButton5 in SpielForm.DXInput.States then DinoMove(MoveCount, rLeft);
+      if isButton6 in SpielForm.DXInput.States then DinoMove(MoveCount, rRight);
     end;
     if X<1 then X := 1;
     if X>SpielForm.dxdraw.width-(Width+1) then
@@ -307,13 +324,28 @@ begin
   Done := False;
 end;
 
-procedure TPanzer.PanzerMove(MoveCount: integer; course: string);
+procedure TPanzer.PanzerMove(MoveCount: integer; course: TRichtung);
 begin
-  if course = 'O' then Y := Y - (300/1000)*MoveCount;
-  if course = 'U' then Y := Y + (300/1000)*MoveCount;
-  if course = 'L' then X := X - (300/1000)*MoveCount;
-  if course = 'R' then X := X + (300/1000)*MoveCount;
-  Image := SpielForm.dxImageList.Items.Find('Panzer'+course);
+  if course = rUp then
+  begin
+    Y := Y - (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('PanzerO');
+  end;
+  if course = rDown then
+  begin
+    Y := Y + (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('PanzerU');
+  end;
+  if course = rLeft then
+  begin
+    X := X - (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('PanzerL');
+  end;
+  if course = rRight then
+  begin
+    X := X + (300/1000)*MoveCount;
+    Image := SpielForm.dxImageList.Items.Find('PanzerR');
+  end;
 end;
 
 procedure TPanzer.DoMove(MoveCount: Integer);
@@ -333,10 +365,10 @@ begin
           panzerkitimer := 0;
           if EinstellungForm.PanzerHoheKI.checked then
           begin
-            if panzery<dinoy then PanzerMove(MoveCount, 'U');
-            if panzery>dinoy then PanzerMove(MoveCount, 'O');
-            if panzerx<dinox then PanzerMove(MoveCount, 'R');
-            if panzerx>dinox then PanzerMove(MoveCount, 'L');
+            if panzery<dinoy then PanzerMove(MoveCount, rDown);
+            if panzery>dinoy then PanzerMove(MoveCount, rUp);
+            if panzerx<dinox then PanzerMove(MoveCount, rRight);
+            if panzerx>dinox then PanzerMove(MoveCount, rLeft);
           end
           else
           begin
@@ -354,26 +386,26 @@ begin
               Pzu1:=Random(SpielForm.Zu) + 1;
               if Pzu1=1 then
               begin
-                if panzery<dinoy then PanzerMove(MoveCount, 'U');
-                if panzery>dinoy then PanzerMove(MoveCount, 'O');
-                if panzerx<dinox then PanzerMove(MoveCount, 'R');
-                if panzerx>dinox then PanzerMove(MoveCount, 'L');
+                if panzery<dinoy then PanzerMove(MoveCount, rDown);
+                if panzery>dinoy then PanzerMove(MoveCount, rUp);
+                if panzerx<dinox then PanzerMove(MoveCount, rRight);
+                if panzerx>dinox then PanzerMove(MoveCount, rLeft);
               end
               else
               begin
                 Pzu2:=Random(4) + 1;
-                if Pzu2=1 then PanzerMove(MoveCount, 'U');
-                if Pzu2=2 then PanzerMove(MoveCount, 'O');
-                if Pzu2=3 then PanzerMove(MoveCount, 'R');
-                if Pzu2=4 then PanzerMove(MoveCount, 'L');
+                if Pzu2=1 then PanzerMove(MoveCount, rDown);
+                if Pzu2=2 then PanzerMove(MoveCount, rUp);
+                if Pzu2=3 then PanzerMove(MoveCount, rRight);
+                if Pzu2=4 then PanzerMove(MoveCount, rLeft);
               end;
             end
             else
             begin
-              if panzery<dinoy then PanzerMove(MoveCount, 'U');
-              if panzery>dinoy then PanzerMove(MoveCount, 'O');
-              if panzerx<dinox then PanzerMove(MoveCount, 'R');
-              if panzerx>dinox then PanzerMove(MoveCount, 'L');
+              if panzery<dinoy then PanzerMove(MoveCount, rDown);
+              if panzery>dinoy then PanzerMove(MoveCount, rUp);
+              if panzerx<dinox then PanzerMove(MoveCount, rRight);
+              if panzerx>dinox then PanzerMove(MoveCount, rLeft);
             end;
           end;
         end;
@@ -381,10 +413,10 @@ begin
     end
     else
     begin
-      if isUp in SpielForm.DXInput.States then PanzerMove(MoveCount, 'O');
-      if isDown in SpielForm.DXInput.States then PanzerMove(MoveCount, 'U');
-      if isLeft in SpielForm.DXInput.States then PanzerMove(MoveCount, 'L');
-      if isRight in SpielForm.DXInput.States then PanzerMove(MoveCount, 'R');
+      if isUp in SpielForm.DXInput.States then PanzerMove(MoveCount, rUp);
+      if isDown in SpielForm.DXInput.States then PanzerMove(MoveCount, rDown);
+      if isLeft in SpielForm.DXInput.States then PanzerMove(MoveCount, rLeft);
+      if isRight in SpielForm.DXInput.States then PanzerMove(MoveCount, rRight);
       if (isButton1 in SpielForm.DXInput.States) and (not FPanzerStop) then
       begin
         if EinstellungForm.checkboxsound.checked and soundkarte then
