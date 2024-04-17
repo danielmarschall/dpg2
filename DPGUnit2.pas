@@ -830,7 +830,8 @@ var
   Str    : pchar;
 begin
   ResStr:='';
-  if system.pos('http://',lowercase(AUrl))=0 then
+  if (system.pos('http://',lowercase(AUrl))=0) and
+     (system.pos('https://',lowercase(AUrl))=0) then
      AUrl:='http://'+AUrl;
 
   // Hinzugefügt
@@ -901,17 +902,17 @@ procedure TSpielForm.UpdatesClick(Sender: TObject);
 var
   temp: string;
 begin
-  temp := GetHTML('http://www.viathinksoft.de/update/?id=dpg2');
+  temp := GetHTML('https://www.viathinksoft.de/update/?id=dpg2');
   if copy(temp, 0, 7) = 'Status:' then
   begin
     Application.MessageBox('Ein Fehler ist aufgetreten. Wahrscheinlich ist keine Internetverbindung aufgebaut, oder der der ViaThinkSoft-Server temporär offline.', 'Fehler', MB_OK + MB_ICONERROR)
   end
   else
   begin
-    if GetHTML('http://www.viathinksoft.de/update/?id=dpg2') <> '1.5c' then
+    if GetHTML('https://www.viathinksoft.de/update/?id=dpg2') <> '1.5c' then
     begin
       if Application.MessageBox('Eine neue Programmversion ist vorhanden. Möchten Sie diese jetzt herunterladen?', 'Information', MB_YESNO + MB_ICONASTERISK) = ID_YES then
-        shellexecute(application.handle, 'open', pchar('http://www.viathinksoft.de/update/?id=@dpg2'), '', '', sw_normal);
+        shellexecute(application.handle, 'open', pchar('https://www.viathinksoft.de/update/?id=@dpg2'), '', '', sw_normal);
     end
     else
     begin
@@ -1015,14 +1016,14 @@ end;
 procedure TSpielForm.InternetClick(Sender: TObject);
 begin
   if sender=link1 then
-    ShellExecute(Handle, 'open', 'http://www.md-technologie.de/', '', '', 1);
+    ShellExecute(Handle, 'open', 'https://www.md-technologie.de/', '', '', 1);
   if sender=link2 then
-    ShellExecute(Handle, 'open', 'http://www.daniel-marschall.de/', '', '', 1);
+    ShellExecute(Handle, 'open', 'https://www.daniel-marschall.de/', '', '', 1);
   if sender=link3 then
-    ShellExecute(Handle, 'open', 'http://www.viathinksoft.de/', '', '', 1);
+    ShellExecute(Handle, 'open', 'https://www.viathinksoft.de/', '', '', 1);
   if sender=neuesteversion then
     ShellExecute(Handle, 'open',
-    'http://www.viathinksoft.de/index.php?page=projektanzeige&seite=projekt-21', '', '', 1);
+    'https://www.viathinksoft.de/index.php?page=projektanzeige&seite=projekt-21', '', '', 1);
   if Sender=VerbesserungsEMail then
     ShellExecute(Handle, 'open',
     pchar('mailto:info@daniel-marschall.de?subject=Verbesserungen zu DPG 2, Version ' + EngineVersion), '', '', 1);
