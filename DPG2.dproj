@@ -67,7 +67,7 @@
         <VerInfo_Keys>CompanyName=ViaThinkSoft;FileDescription=Ein Spiel für 1 oder 2 Personen...;FileVersion=1.5.0.0;InternalName=Der Panzergeneral II 1.5;LegalCopyright=© Copyright 2000 - 2007 ViaThinkSoft;LegalTrademarks=Keine;OriginalFilename=DPG2.exe;ProductName=Der Panzergeneral II 1.5;ProductVersion=1.5.0.0;Homepage=www.viathinksoft.de;Projektleiter=Michael Düpjohann - www.md-technologie.de</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
