@@ -1,0 +1,12 @@
+Panzermotor abschalten:	q
+Panzermotor einschalten:	e
+
+Panzer nach rechts:		d
+Panzer nach links:		a
+Panzer nach oben:		w
+Panzer nach unten:		s
+
+Dino nach rechts:		l
+Dino nach links:		j
+Dino nach oben:		i
+Dino nach unten:		k

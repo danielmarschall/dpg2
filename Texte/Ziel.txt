@@ -1,0 +1,5 @@
+Ziel des Panzers ist es, den Dino 
+mit dem Panzer zu überfahren.
+
+Ziel des Dinos ist es so lange wie 
+möglich zu überleben.
