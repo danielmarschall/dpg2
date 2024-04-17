@@ -19,11 +19,11 @@ uses
   Forms,
   Dialogs,
   System.UITypes,
-  DPGUnit1 in 'DPGUnit1.pas' {MenuForm},
-  DPGUnit2 in 'DPGUnit2.pas' {SpielForm},
-  DPGUnit3 in 'DPGUnit3.pas' {HilfeForm},
-  DPGUnit4 in 'DPGUnit4.pas' {EinstellungForm},
-  DPGUnit6 in 'DPGUnit6.pas' {SplashForm},
+  DpgMenu in 'DpgMenu.pas' {MenuForm},
+  DpgGame in 'DpgGame.pas' {SpielForm},
+  DpgHilfe in 'DpgHilfe.pas' {HilfeForm},
+  DpgSettings in 'DpgSettings.pas' {EinstellungForm},
+  DpgSplash in 'DpgSplash.pas' {SplashForm},
   DPGGlobal in 'DPGGlobal.pas';
 
 {$R *.RES}

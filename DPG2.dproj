@@ -112,19 +112,19 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="DPGUnit1.pas">
+        <DCCReference Include="DpgMenu.pas">
             <Form>MenuForm</Form>
         </DCCReference>
-        <DCCReference Include="DPGUnit2.pas">
+        <DCCReference Include="DpgGame.pas">
             <Form>SpielForm</Form>
         </DCCReference>
-        <DCCReference Include="DPGUnit3.pas">
+        <DCCReference Include="DpgHilfe.pas">
             <Form>HilfeForm</Form>
         </DCCReference>
-        <DCCReference Include="DPGUnit4.pas">
+        <DCCReference Include="DpgSettings.pas">
             <Form>EinstellungForm</Form>
         </DCCReference>
-        <DCCReference Include="DPGUnit6.pas">
+        <DCCReference Include="DpgSplash.pas">
             <Form>SplashForm</Form>
         </DCCReference>
         <DCCReference Include="DPGGlobal.pas"/>

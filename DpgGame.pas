@@ -7,7 +7,7 @@
 //  Alle Rechte vorbehalten.                           //
 /////////////////////////////////////////////////////////
 
-unit DPGUnit2;
+unit DpgGame;
                                                                          
 interface
 
@@ -135,7 +135,7 @@ var
 implementation
 
 uses
-  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DirectX,
+  DPGGlobal, DpgMenu, DpgHilfe, DpgSettings, DpgSplash, DirectX,
   DirectMusic;
 
 {$R *.DFM}

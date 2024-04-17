@@ -7,7 +7,7 @@
 //  Alle Rechte vorbehalten.                           //
 /////////////////////////////////////////////////////////
 
-unit DPGUnit6;
+unit DpgSplash;
 
 interface                                              
 
@@ -35,7 +35,7 @@ var
 implementation
 
 uses
-  DPGGlobal, DPGUnit2;
+  DPGGlobal, DpgGame;
 
 {$R *.DFM}
 
