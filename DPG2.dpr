@@ -74,7 +74,6 @@ begin
   if not fileexists(directory+'Bilder\Weltkugel.bmp') then Fehler := true;
   if not fileexists(directory+'DirectX\Grafik.dxg') then Fehler := true;
   if not fileexists(directory+'DirectX\Audio.dxw') then Fehler := true;
-  // if not fileexists(directory+'Einstellungen\DPG2.ini') then Fehler := true;
   if not fileexists(directory+'Musik\Freegamer.mid') then Fehler := true;
   if not fileexists(directory+'Musik\Musik1.mid') then Fehler := true;
   if not fileexists(directory+'Musik\Musik2.mid') then Fehler := true;

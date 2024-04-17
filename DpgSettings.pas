@@ -13,7 +13,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, INIFiles, System.UITypes;
+  StdCtrls, ExtCtrls, Buttons, System.UITypes;
 
 type
   TEinstellungForm = class(TForm)
@@ -87,7 +87,7 @@ var
 implementation
 
 uses
-  DPGGlobal, DpgMenu, DpgGame, DpgHilfe, DpgSplash;
+  DPGGlobal, DpgMenu, DpgGame, DpgHilfe, DpgSplash, Registry;
 
 {$R *.DFM}
 
@@ -234,79 +234,70 @@ end;
 
 procedure TEinstellungForm.SaveINI;
 var
-  INIDatei: TIniFile;
-  Daten: TextFile;
+  reg: TRegistry;
 begin
-  AssignFile(daten, Directory+'Einstellungen\DPG2.ini');
-  Rewrite(daten);
-  WriteLN(daten, '; Der Panzergeneral 2');
-  WriteLN(daten);
-  CloseFile(daten);
-  INIDatei := TIniFile.Create(Directory+'Einstellungen\DPG2.ini');
-  if Spielernamen.checked then
-  begin
-    INIDatei.WriteString('MenuForm', 'Spieler1', MenuForm.Edit1.Text);
-    INIDatei.WriteString('MenuForm', 'Spieler2', MenuForm.Edit2.Text);
-  end
-  else
-  begin
-    INIDatei.WriteString('MenuForm', 'Spieler1', 'Name Spieler 1 (Panzer)');
-    INIDatei.WriteString('MenuForm', 'Spieler2', 'Name Spieler 2 (Dino)');
-    MenuForm.edit1.text:='Name Spieler 1 (Panzer)';
-    MenuForm.edit2.text:='Name Spieler 2 (Dino)';
+  reg := TRegistry.Create;
+  try
+    reg.RootKey := HKEY_CURRENT_USER;
+    if reg.OpenKey(DpgRegistrySettings, true) then
+    begin
+      if Spielernamen.checked then
+      begin
+        reg.WriteString('NameSpieler1', MenuForm.Edit1.Text);
+        reg.WriteString('NameSpieler2', MenuForm.Edit2.Text);
+      end
+      else
+      begin
+        reg.WriteString('NameSpieler1', 'Name Spieler 1 (Panzer)');
+        reg.WriteString('NameSpieler2', 'Name Spieler 2 (Dino)');
+        MenuForm.edit1.text:='Name Spieler 1 (Panzer)';
+        MenuForm.edit2.text:='Name Spieler 2 (Dino)';
+      end;
+      reg.WriteInteger('BenzinPanzer', StrToInt(PanzerEnergy.text));
+      reg.WriteInteger('LebenDino', StrToInt(DinoEnergy.text));
+      reg.WriteBool('Soundeffekte', CheckBoxSound.checked);
+      reg.WriteBool('Musik', CheckBoxMusic.checked);
+      if Musik1.checked then
+        reg.WriteInteger('SoundTrack', 1);
+      if Musik2.checked then
+        reg.WriteInteger('SoundTrack', 2);
+      if Musik3.checked then
+        reg.WriteInteger('SoundTrack', 3);
+      if Musik4.checked then
+        reg.WriteInteger('SoundTrack', 4);
+      if Musik5.checked then
+        reg.WriteInteger('SoundTrack', 5);
+      reg.WriteBool('BenzinAnzeige', CheckBoxBenzin.checked);
+      reg.WriteBool('LebenAnzeige', CheckBoxLebensenergie.checked);
+      reg.WriteBool('SpielerNamenSpeichern', Spielernamen.checked);
+      reg.WriteBool('Blut', Blut.checked);
+      reg.WriteBool('PanzerKI', CheckBoxPanzer.checked);
+      if PLe.Checked then
+        reg.WriteInteger('PanzerSchwierigkeit', 1);
+      if PMi.Checked then
+        reg.WriteInteger('PanzerSchwierigkeit', 2);
+      if PSc.Checked then
+        reg.WriteInteger('PanzerSchwierigkeit', 3);
+      reg.WriteBool('PanzerSpezial', PanzerHoheKI.checked);
+      reg.WriteBool('PanzerInterval', IVP.checked);
+      reg.WriteInteger('PanzerGeschwindigkeit', strtoint(PInterval.text));
+      reg.WriteInteger('PanzerVerwirrung', strtoint(VerwirrungEdt.text));
+      reg.WriteBool('DinoKI', CheckBoxDino.checked);
+      if DLe.Checked then
+        reg.WriteInteger('DinoSchwierigkeit', 1);
+      if DMi.Checked then
+        reg.WriteInteger('DinoSchwierigkeit', 2);
+      if DSc.Checked then
+        reg.WriteInteger('DinoSchwierigkeit', 3);
+      reg.WriteBool('DinoSpezial', DinoHoheKI.checked);
+      reg.WriteBool('DinoInterval', IVD.checked);
+      reg.WriteInteger('DinoGeschwindigkeit',
+        strtoint(DInterval.text));
+      reg.CloseKey;
+    end;
+  finally
+    FreeAndNil(reg);
   end;
-  { Hier wird ein Abstand in der INI-Datei erzeugt... }
-  FreeAndNil(INIDatei);
-  AssignFile(daten, Directory+'Einstellungen\DPG2.ini');
-  Append(daten);
-  WriteLN(daten, '');
-  CloseFile(daten);
-  INIDatei := TIniFile.Create(Directory+'Einstellungen\DPG2.ini');
-  { Ende! }
-  INIDatei.WriteString('SpielForm', 'BenzinPanzer', PanzerEnergy.text);
-  INIDatei.WriteString('SpielForm', 'LebenDino', DinoEnergy.text);
-  INIDatei.WriteBool('SpielForm', 'Ton', CheckBoxSound.checked);
-  INIDatei.WriteBool('SpielForm', 'Musik', CheckBoxMusic.checked);
-  if Musik1.checked then
-    INIDatei.WriteInteger('SpielForm', 'Track', 1);
-  if Musik2.checked then
-    INIDatei.WriteInteger('SpielForm', 'Track', 2);
-  if Musik3.checked then
-    INIDatei.WriteInteger('SpielForm', 'Track', 3);
-  if Musik4.checked then
-    INIDatei.WriteInteger('SpielForm', 'Track', 4);
-  if Musik5.checked then
-    INIDatei.WriteInteger('SpielForm', 'Track', 5);
-  INIDatei.WriteBool('SpielForm', 'BenzinAnzeige', CheckBoxBenzin.checked);
-  INIDatei.WriteBool('SpielForm', 'LebenAnzeige',
-    CheckBoxLebensenergie.checked);
-  INIDatei.WriteBool('SpielForm', 'SpielerNamen', Spielernamen.checked);
-  INIDatei.WriteBool('SpielForm', 'Blut', Blut.checked);
-  INIDatei.WriteBool('SpielForm', 'PanzerKI', CheckBoxPanzer.checked);
-  if PLe.Checked then
-    INIDatei.WriteInteger('SpielForm', 'PanzerSchwierigkeit', 1);
-  if PMi.Checked then
-    INIDatei.WriteInteger('SpielForm', 'PanzerSchwierigkeit', 2);
-  if PSc.Checked then
-    INIDatei.WriteInteger('SpielForm', 'PanzerSchwierigkeit', 3);
-  INIDatei.WriteBool('SpielForm', 'PanzerSpezial', PanzerHoheKI.checked);
-  INIDatei.WriteBool('SpielForm', 'PanzerInterval', IVP.checked);
-  INIDatei.WriteInteger('SpielForm', 'PanzerGeschwindigkeit',
-    strtoint(PInterval.text));
-  INIDatei.WriteInteger('SpielForm', 'PanzerVerwirrung',
-    strtoint(VerwirrungEdt.text));
-  INIDatei.WriteBool('SpielForm', 'DinoKI', CheckBoxDino.checked);
-  if DLe.Checked then
-    INIDatei.WriteInteger('SpielForm', 'DinoSchwierigkeit', 1);
-  if DMi.Checked then
-    INIDatei.WriteInteger('SpielForm', 'DinoSchwierigkeit', 2);
-  if DSc.Checked then
-    INIDatei.WriteInteger('SpielForm', 'DinoSchwierigkeit', 3);
-  INIDatei.WriteBool('SpielForm', 'DinoSpezial', DinoHoheKI.checked);
-  INIDatei.WriteBool('SpielForm', 'DinoInterval', IVD.checked);
-  INIDatei.WriteInteger('SpielForm', 'DinoGeschwindigkeit',
-    strtoint(DInterval.text));
-  FreeAndNil(INIDatei);
 end;
 
 procedure TEinstellungForm.PruefungClick(Sender: TObject);
@@ -377,67 +368,108 @@ begin
   end;
 end;
 
+type
+  TRegistryHelper = class helper for TRegistry
+  public
+    function ReadIntegerWithDefault(key: string; defval: integer): integer;
+    function ReadBoolWithDefault(key: string; defval: boolean): boolean;
+    function ReadStringWithDefault(key: string; defval: string): string;
+  end;
+
+function TRegistryHelper.ReadIntegerWithDefault(key: string; defval: integer): integer;
+begin
+  if ValueExists(key) then
+    result := ReadInteger(key)
+  else
+    result := defval;
+end;
+
+function TRegistryHelper.ReadBoolWithDefault(key: string; defval: boolean): boolean;
+begin
+  if ValueExists(key) then
+    result := ReadBool(key)
+  else
+    result := defval;
+end;
+
+function TRegistryHelper.ReadStringWithDefault(key: string; defval: string): string;
+begin
+  if ValueExists(key) then
+    result := ReadString(key)
+  else
+    result := defval;
+end;
+
 procedure TEinstellungForm.LoadINI;
 var
-  INIDatei: TIniFile;
   TempInt: integer;
+  reg: TRegistry;
 begin
-  INIDatei := TIniFile.Create(Directory+'Einstellungen\DPG2.ini');
-  TempInt := INIDatei.ReadInteger('SpielForm', 'BenzinPanzer', 130);
-  if (TempInt > -1) and (TempInt < 10000) then
-    PanzerEnergy.Text := inttostr(TempInt);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'LebenDino', 10);
-  if (TempInt > -1) and (TempInt < 10000) then
-    DinoEnergy.Text := inttostr(TempInt);
-  CheckBoxSound.checked := INIDatei.ReadBool('SpielForm', 'Ton', true);
-  CheckBoxMusic.checked := INIDatei.ReadBool('SpielForm', 'Musik', true);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'Track', 1);
-  Musik1.checked := TempInt = 1;
-  Musik2.checked := TempInt = 2;
-  Musik3.checked := TempInt = 3;
-  Musik4.checked := TempInt = 4;
-  Musik5.checked := TempInt = 5;
-  CheckBoxBenzin.checked :=
-    INIDatei.ReadBool('SpielForm', 'BenzinAnzeige', true);
-  CheckBoxLebensenergie.checked :=
-    INIDatei.ReadBool('SpielForm', 'LebenAnzeige', true);
-  Blut.checked := INIDatei.ReadBool('SpielForm', 'Blut', false);
-  Spielernamen.checked := INIDatei.ReadBool('SpielForm', 'SpielerNamen', true);
-  CheckBoxPanzer.checked := INIDatei.ReadBool('SpielForm', 'PanzerKI', false);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'PanzerSchwierigkeit', 1);
-  PLe.checked := TempInt = 1;
-  PMi.checked := TempInt = 2;
-  PSc.checked := TempInt = 3;
-  PanzerHoheKI.checked :=
-    INIDatei.ReadBool('SpielForm', 'PanzerSpezial', false);
-  IVP.checked := INIDatei.ReadBool('SpielForm', 'PanzerInterval', false);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'PanzerGeschwindigkeit', 13);
-  if (TempInt > -1) and (TempInt < 1000) then
-    PInterval.Text := inttostr(TempInt);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'PanzerVerwirrung', 3);
-  if (TempInt > -1) and (TempInt < 100) then
-    VerwirrungEdt.Text := inttostr(TempInt);
-  CheckBoxDino.checked := INIDatei.ReadBool('SpielForm', 'DinoKI', false);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'DinoSchwierigkeit', 1);
-  DLe.checked := TempInt = 1;
-  DMi.checked := TempInt = 2;
-  DSc.checked := TempInt = 3;
-  DinoHoheKI.checked := INIDatei.ReadBool('SpielForm', 'DinoSpezial', false);
-  IVD.checked := INIDatei.ReadBool('SpielForm', 'DinoInterval', false);
-  TempInt := INIDatei.ReadInteger('SpielForm', 'DinoGeschwindigkeit', 13);
-  if (TempInt > -1) and (TempInt < 1000) then
-    DInterval.Text := inttostr(TempInt);
-  MenuForm.Edit1.text :=
-    INIDatei.ReadString('MenuForm', 'Spieler1', 'Name Spieler 1 (Panzer)');
-  MenuForm.Edit2.text :=
-    INIDatei.ReadString('MenuForm', 'Spieler2', 'Name Spieler 2 (Dino)');
-  FreeAndNil(INIDatei);
-  if not Spielernamen.Checked then
-  begin
-    MenuForm.Edit1.Text := 'Name Spieler 1 (Panzer)';
-    MenuForm.Edit2.Text := 'Name Spieler 2 (Dino)';
+  reg := TRegistry.Create;
+  try
+    reg.RootKey := HKEY_CURRENT_USER;
+    if reg.OpenKeyReadOnly(DpgRegistrySettings) then
+    begin
+      TempInt := reg.ReadIntegerWithDefault('BenzinPanzer', 130);
+      if (TempInt > -1) and (TempInt < 10000) then
+        PanzerEnergy.Text := inttostr(TempInt);
+      TempInt := reg.ReadIntegerWithDefault('LebenDino', 10);
+      if (TempInt > -1) and (TempInt < 10000) then
+        DinoEnergy.Text := inttostr(TempInt);
+      CheckBoxSound.checked := reg.ReadBoolWithDefault('Soundeffekte', true);
+      CheckBoxMusic.checked := reg.ReadBoolWithDefault('Musik', true);
+      TempInt := reg.ReadIntegerWithDefault('SoundTrack', 1);
+      Musik1.checked := TempInt = 1;
+      Musik2.checked := TempInt = 2;
+      Musik3.checked := TempInt = 3;
+      Musik4.checked := TempInt = 4;
+      Musik5.checked := TempInt = 5;
+      CheckBoxBenzin.checked :=
+        reg.ReadBoolWithDefault('BenzinAnzeige', true);
+      CheckBoxLebensenergie.checked :=
+        reg.ReadBoolWithDefault('LebenAnzeige', true);
+      Blut.checked := reg.ReadBoolWithDefault('Blut', false);
+      Spielernamen.checked := reg.ReadBoolWithDefault('SpielerNamenSpeichern', true);
+      CheckBoxPanzer.checked := reg.ReadBoolWithDefault('PanzerKI', false);
+      TempInt := reg.ReadIntegerWithDefault('PanzerSchwierigkeit', 1);
+      PLe.checked := TempInt = 1;
+      PMi.checked := TempInt = 2;
+      PSc.checked := TempInt = 3;
+      PanzerHoheKI.checked :=
+        reg.ReadBoolWithDefault('PanzerSpezial', false);
+      IVP.checked := reg.ReadBoolWithDefault('PanzerInterval', false);
+      TempInt := reg.ReadIntegerWithDefault('PanzerGeschwindigkeit', 13);
+      if (TempInt > -1) and (TempInt < 1000) then
+        PInterval.Text := inttostr(TempInt);
+      TempInt := reg.ReadIntegerWithDefault('PanzerVerwirrung', 3);
+      if (TempInt > -1) and (TempInt < 100) then
+        VerwirrungEdt.Text := inttostr(TempInt);
+      CheckBoxDino.checked := reg.ReadBoolWithDefault('DinoKI', false);
+      TempInt := reg.ReadIntegerWithDefault('DinoSchwierigkeit', 1);
+      DLe.checked := TempInt = 1;
+      DMi.checked := TempInt = 2;
+      DSc.checked := TempInt = 3;
+      DinoHoheKI.checked := reg.ReadBoolWithDefault('DinoSpezial', false);
+      IVD.checked := reg.ReadBoolWithDefault('DinoInterval', false);
+      TempInt := reg.ReadIntegerWithDefault('DinoGeschwindigkeit', 13);
+      if (TempInt > -1) and (TempInt < 1000) then
+        DInterval.Text := inttostr(TempInt);
+      MenuForm.Edit1.text :=
+        reg.ReadStringWithDefault('NameSpieler1', 'Name Spieler 1 (Panzer)');
+      MenuForm.Edit2.text :=
+        reg.ReadStringWithDefault('NameSpieler2', 'Name Spieler 2 (Dino)');
+      if not Spielernamen.Checked then
+      begin
+        MenuForm.Edit1.Text := 'Name Spieler 1 (Panzer)';
+        MenuForm.Edit2.Text := 'Name Spieler 2 (Dino)';
+      end;
+      SaveINI;
+
+      reg.CloseKey;
+    end;
+  finally
+    FreeAndNil(reg);
   end;
-  SaveINI;
 end;
 
 procedure TEinstellungForm.AbbClick(Sender: TObject);

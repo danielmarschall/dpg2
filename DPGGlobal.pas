@@ -17,6 +17,7 @@ uses
 const
   ProgrammVersion = '1.5e';
   CopyRight = '(C) 2000-2005';
+  DpgRegistrySettings = 'SOFTWARE\ViaThinkSoft\DPG2\Settings';
 
 var
   Directory: string;

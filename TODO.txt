@@ -1,13 +1,10 @@
 
-2024 Review:
-- Hilfe/Texte prüfen
-- Einstellungen => Registry
-- Mit EV-Zert veröffentlichen
-- TODOs zusammenfassen
+TODOs (2024 Review):
+- Hilfe/Texte prüfen bzw. übearbeiten
 - Die KI ist ziemlich dumm. Dino rennt in die Ecke und bleibt da
+- Textanzeige, dass Motor des Panzers ausgeschaltet ist.
 
-
-Alte TODOs (ca. 2005)
+Alte TODOs (ca. 2005):
 - Bessere Dateiüberprüfung!
 - F2.Ladevorgang mit Splash?!
 - Hilfe besser in BCB4E ?!?!

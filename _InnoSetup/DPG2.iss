@@ -37,12 +37,11 @@ LanguageID=$0407
 Name: "desktopicon"; Description: "Erstelle eine Verknüpfung auf dem &Desktop"; GroupDescription: "Programmverknüpfungen:"; MinVersion: 4,4
 
 [Files]
-Source: "..\DPG2.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Hilfe.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\DPG2.exe"; DestDir: "{app}"; Flags: ignoreversion signonce
+Source: "..\Hilfe.exe"; DestDir: "{app}"; Flags: ignoreversion signonce
 Source: "..\Bilder\*.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\DirectX\Audio.dxw"; DestDir: "{app}\DirectX"; Flags: ignoreversion
 Source: "..\DirectX\Grafik.dxg"; DestDir: "{app}\DirectX"; Flags: ignoreversion
-Source: "..\Einstellungen\DPG2.ini"; DestDir: "{app}\Einstellungen"; Flags: ignoreversion
 Source: "..\Musik\*.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
 Source: "..\Texte\*.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\*.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion

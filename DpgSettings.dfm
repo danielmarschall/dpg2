@@ -52,6 +52,7 @@ object EinstellungForm: TEinstellungForm
     Height = 21
     Hint = 'Benzin des Panzers...'
     MaxLength = 3
+    NumbersOnly = True
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
@@ -66,6 +67,7 @@ object EinstellungForm: TEinstellungForm
     Height = 21
     Hint = 'Lebensenergie des Dinos...'
     MaxLength = 3
+    NumbersOnly = True
     ParentShowHint = False
     ShowHint = True
     TabOrder = 2
@@ -201,6 +203,7 @@ object EinstellungForm: TEinstellungForm
       Height = 21
       Enabled = False
       MaxLength = 3
+      NumbersOnly = True
       TabOrder = 5
       Text = '13'
       Visible = False
@@ -210,9 +213,9 @@ object EinstellungForm: TEinstellungForm
   object CheckBoxSound: TCheckBox
     Left = 8
     Top = 104
-    Width = 74
+    Width = 96
     Height = 17
-    Caption = 'Ger'#228'usche'
+    Caption = 'Soundeffekte'
     Checked = True
     State = cbChecked
     TabOrder = 3
@@ -440,6 +443,7 @@ object EinstellungForm: TEinstellungForm
       Height = 21
       Enabled = False
       MaxLength = 3
+      NumbersOnly = True
       TabOrder = 5
       Text = '13'
       Visible = False
@@ -451,6 +455,7 @@ object EinstellungForm: TEinstellungForm
       Width = 57
       Height = 21
       MaxLength = 2
+      NumbersOnly = True
       TabOrder = 6
       Text = '3'
       Visible = False
