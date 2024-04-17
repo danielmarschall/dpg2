@@ -52,7 +52,6 @@ Source: "..\Bilder\Standard.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\Bilder\Sterne.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\Bilder\Tastatur.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\Bilder\Verlassen.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Video.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\Bilder\Weltkugel.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\Bilder\Link.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\DirectX\Audio.dxw"; DestDir: "{app}\DirectX"; Flags: ignoreversion
@@ -70,8 +69,6 @@ Source: "..\Texte\Informationen.txt"; DestDir: "{app}\Texte"; Flags: ignoreversi
 Source: "..\Texte\Mitarbeiter.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
 Source: "..\Texte\Steuerung.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
 Source: "..\Texte\Ziel.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\Videos\Audio.wav"; DestDir: "{app}\Videos"; Flags: ignoreversion
-Source: "..\Videos\Video.avi"; DestDir: "{app}\Videos"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\F3.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\F4f2.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\Informationen.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion

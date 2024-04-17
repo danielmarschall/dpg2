@@ -1,5 +1,5 @@
 
-Hilfe/Video/Texte prüfen
+Hilfe/Texte prüfen
 
 MCI => DXMusic
 

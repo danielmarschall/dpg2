@@ -41,7 +41,7 @@ object EinstellungForm: TEinstellungForm
     Width = 187
     Height = 17
     Caption = 'Dino wird vom Computer gesteuert!'
-    TabOrder = 17
+    TabOrder = 15
     OnClick = PruefungClick
     OnMouseMove = FormMouseMove
   end
@@ -89,7 +89,7 @@ object EinstellungForm: TEinstellungForm
     Width = 129
     Height = 25
     Caption = '&Abbrechen'
-    TabOrder = 20
+    TabOrder = 18
     OnClick = AbbClick
     OnMouseMove = AbbMouseMove
   end
@@ -99,7 +99,7 @@ object EinstellungForm: TEinstellungForm
     Width = 121
     Height = 25
     Caption = '&Standard'
-    TabOrder = 21
+    TabOrder = 19
     OnClick = STDClick
     OnMouseMove = STDMouseMove
   end
@@ -109,7 +109,7 @@ object EinstellungForm: TEinstellungForm
     Width = 193
     Height = 121
     Caption = 'Dino-KI'
-    TabOrder = 18
+    TabOrder = 16
     object IntD: TLabel
       Left = 8
       Top = 16
@@ -236,7 +236,7 @@ object EinstellungForm: TEinstellungForm
     Height = 17
     Caption = 'Inception'
     Checked = True
-    TabOrder = 19
+    TabOrder = 17
     TabStop = True
     OnClick = OptionChange
   end
@@ -276,29 +276,6 @@ object EinstellungForm: TEinstellungForm
     TabOrder = 8
     OnClick = OptionChange
   end
-  object CheckBoxVideo: TCheckBox
-    Left = 8
-    Top = 216
-    Width = 87
-    Height = 17
-    Caption = 'Anfangsvideo'
-    Checked = True
-    State = cbChecked
-    TabOrder = 9
-    OnClick = PruefungClick
-  end
-  object CheckBoxVideo2: TCheckBox
-    Left = 24
-    Top = 232
-    Width = 88
-    Height = 17
-    Caption = 'Ton bei Video'
-    Checked = True
-    Enabled = False
-    State = cbChecked
-    TabOrder = 10
-    OnClick = OptionChange
-  end
   object CheckBoxBenzin: TCheckBox
     Left = 8
     Top = 248
@@ -307,7 +284,7 @@ object EinstellungForm: TEinstellungForm
     Caption = 'Benzin auch in Zahlen'
     Checked = True
     State = cbChecked
-    TabOrder = 11
+    TabOrder = 9
     OnClick = OptionChange
   end
   object CheckBoxLebensenergie: TCheckBox
@@ -318,7 +295,7 @@ object EinstellungForm: TEinstellungForm
     Caption = 'Lebensenergie auch in Zahlen'
     Checked = True
     State = cbChecked
-    TabOrder = 12
+    TabOrder = 10
     OnClick = OptionChange
   end
   object Spielernamen: TCheckBox
@@ -329,7 +306,7 @@ object EinstellungForm: TEinstellungForm
     Caption = 'Spielernamen speichern'
     Checked = True
     State = cbChecked
-    TabOrder = 13
+    TabOrder = 11
     OnClick = OptionChange
   end
   object Blut: TCheckBox
@@ -344,7 +321,7 @@ object EinstellungForm: TEinstellungForm
     Font.Name = 'MS Sans Serif'
     Font.Style = []
     ParentFont = False
-    TabOrder = 14
+    TabOrder = 12
     OnClick = OptionChange
   end
   object CheckBoxPanzer: TCheckBox
@@ -353,7 +330,7 @@ object EinstellungForm: TEinstellungForm
     Width = 198
     Height = 17
     Caption = 'Panzer wird vom Computer gesteuert!'
-    TabOrder = 15
+    TabOrder = 13
     OnClick = PruefungClick
     OnMouseMove = FormMouseMove
   end
@@ -363,7 +340,7 @@ object EinstellungForm: TEinstellungForm
     Width = 193
     Height = 137
     Caption = 'Panzer-KI'
-    TabOrder = 16
+    TabOrder = 14
     object IntP: TLabel
       Left = 8
       Top = 16

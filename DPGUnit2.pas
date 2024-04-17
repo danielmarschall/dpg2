@@ -132,8 +132,7 @@ var
 implementation
 
 uses
-  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DPGUnit5,
-  DirectX;
+  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DirectX;
 
 {$R *.DFM}
 
@@ -622,7 +621,6 @@ begin
       MessageDLG('Gleichstand - Keiner hat gewonnen!', mtInformation, [mbOK], 0);
       Kommentar:='';
       MenuForm.start.visible:=true;
-      MenuForm.video.visible:=true;
       MenuForm.Optionen.Visible:=true;
       MenuForm.Ende.Visible:=true;
       MenuForm.edit1.visible:=false;
@@ -657,7 +655,6 @@ begin
         ', Sie haben gewonnen!', mtInformation, [mbOK], 0);
       Kommentar:='';
       MenuForm.start.visible:=true;
-      MenuForm.video.visible:=true;
       MenuForm.Optionen.Visible:=true;
       MenuForm.Ende.Visible:=true;
       MenuForm.edit1.visible:=false;
@@ -692,7 +689,6 @@ begin
         ', du hast es geschafft, du bist entkommen!', mtInformation, [mbOK], 0);
       Kommentar:='';
       MenuForm.start.visible:=true;
-      MenuForm.video.visible:=true;
       MenuForm.Optionen.Visible:=true;
       MenuForm.Ende.Visible:=true;
       MenuForm.edit1.visible:=false;
@@ -764,7 +760,6 @@ begin
   for i := 1 to 8 do cheat[i]:=false;
   freegamer:=false;
   MenuForm.start.visible:=true;
-  MenuForm.video.visible:=true;
   MenuForm.Optionen.Visible:=true;
   MenuForm.Ende.Visible:=true;
   MenuForm.edit1.visible:=false;

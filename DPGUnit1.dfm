@@ -91,16 +91,6 @@ object MenuForm: TMenuForm
     OnClick = OptionenClick
     OnMouseMove = OptionenMouseMove
   end
-  object Video: TBitBtn
-    Left = 32
-    Top = 88
-    Width = 137
-    Height = 25
-    Caption = '&Anfangsvideo'
-    TabOrder = 2
-    OnClick = Videoclick
-    OnMouseMove = videoMouseMove
-  end
   object Ende: TBitBtn
     Left = 32
     Top = 120
@@ -108,7 +98,7 @@ object MenuForm: TMenuForm
     Height = 25
     Cancel = True
     Caption = '&Beenden'
-    TabOrder = 3
+    TabOrder = 2
     OnClick = EndeClick
     OnMouseMove = EndeMouseMove
   end
@@ -119,7 +109,7 @@ object MenuForm: TMenuForm
     Height = 25
     Caption = '&Los geht'#180's'
     Default = True
-    TabOrder = 4
+    TabOrder = 3
     Visible = False
     OnClick = LosClick
     OnMouseMove = LosMouseMove
@@ -130,7 +120,7 @@ object MenuForm: TMenuForm
     Width = 97
     Height = 25
     Caption = '&Abbrechen'
-    TabOrder = 5
+    TabOrder = 4
     Visible = False
     OnClick = AbbClick
     OnMouseMove = AbbMouseMove
@@ -141,7 +131,7 @@ object MenuForm: TMenuForm
     Width = 137
     Height = 21
     MaxLength = 7
-    TabOrder = 6
+    TabOrder = 5
     Visible = False
     OnKeyPress = EditKeyPress
   end
@@ -151,7 +141,7 @@ object MenuForm: TMenuForm
     Width = 137
     Height = 21
     MaxLength = 7
-    TabOrder = 7
+    TabOrder = 6
     Visible = False
     OnKeyPress = EditKeyPress
   end
@@ -162,7 +152,7 @@ object MenuForm: TMenuForm
     Height = 33
     BevelOuter = bvLowered
     Color = clWhite
-    TabOrder = 8
+    TabOrder = 7
     object CopyLabel1: TLabel
       Left = 3
       Top = 3

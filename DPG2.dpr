@@ -23,7 +23,6 @@ uses
   DPGUnit2 in 'DPGUnit2.pas' {SpielForm},
   DPGUnit3 in 'DPGUnit3.pas' {HilfeForm},
   DPGUnit4 in 'DPGUnit4.pas' {EinstellungForm},
-  DPGUnit5 in 'DPGUnit5.pas' {VideoForm},
   DPGUnit6 in 'DPGUnit6.pas' {SplashForm},
   DPGGlobal in 'DPGGlobal.pas';
 
@@ -72,7 +71,6 @@ begin
   if not fileexists(directory+'Bilder\Sterne.bmp') then Fehler := true;
   if not fileexists(directory+'Bilder\Tastatur.bmp') then Fehler := true;
   if not fileexists(directory+'Bilder\Verlassen.bmp') then Fehler := true;
-  if not fileexists(directory+'Bilder\Video.bmp') then Fehler := true;
   if not fileexists(directory+'Bilder\Weltkugel.bmp') then Fehler := true;
   if not fileexists(directory+'DirectX\Grafik.dxg') then Fehler := true;
   if not fileexists(directory+'DirectX\Audio.dxw') then Fehler := true;
@@ -89,8 +87,6 @@ begin
   if not fileexists(directory+'Texte\Mitarbeiter.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Steuerung.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Ziel.txt') then Fehler := true;
-  if not fileexists(directory+'Videos\Video.avi') then Fehler := true;
-  if not fileexists(directory+'Videos\Audio.wav') then Fehler := true;
   if Fehler then
   begin
     MessageDLG('Dateien, die die Programmstabilität gewährleisten, sind ' +
@@ -114,14 +110,11 @@ begin
   counter(1);
   Application.CreateForm(TEinstellungForm, EinstellungForm);
   counter(1);
-  Application.CreateForm(TVideoForm, VideoForm);
-  counter(1);
   EinstellungForm.LoadINI;
   counter(1);
   SplashForm.Hide;
   FreeAndNil(SplashForm);
-  MenuForm.Visible := not EinstellungForm.checkboxvideo.checked;
-  VideoForm.Visible := EinstellungForm.checkboxvideo.checked;
+  MenuForm.Visible := true;
   Application.Run;
 end.
 

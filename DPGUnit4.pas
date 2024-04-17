@@ -32,8 +32,6 @@ type
     Musik3: TRadioButton;
     Musik4: TRadioButton;
     Musik5: TRadioButton;
-    CheckBoxVideo: TCheckBox;
-    CheckBoxVideo2: TCheckBox;
     CheckBoxBenzin: TCheckBox;
     CheckBoxLebensenergie: TCheckBox;
     Spielernamen: TCheckBox;
@@ -180,7 +178,6 @@ begin
     Musik3.enabled := false;
     Musik4.enabled := false;
     Musik5.enabled := false;
-    Checkboxvideo2.enabled := false;
   end
   else
   begin
@@ -189,7 +186,6 @@ begin
     Musik3.enabled := checkboxmusic.checked;
     Musik4.enabled := checkboxmusic.checked;
     Musik5.enabled := checkboxmusic.checked;
-    checkboxvideo2.enabled := checkboxvideo.Checked;
   end;
 end;
 
@@ -215,8 +211,6 @@ begin
   DInterval.enabled:=false;
   checkboxSound.checked:=true;
   checkboxMusic.checked:=true;
-  checkboxVideo.checked:=true;
-  checkboxVideo2.checked:=true;
   checkboxLebensenergie.checked:=true;
   checkboxBenzin.checked:=true;
   Spielernamen.checked:=true;
@@ -283,8 +277,6 @@ begin
     INIDatei.WriteInteger('SpielForm', 'Track', 4);
   if Musik5.checked then
     INIDatei.WriteInteger('SpielForm', 'Track', 5);
-  INIDatei.WriteBool('SpielForm', 'Video', CheckBoxVideo.checked);
-  INIDatei.WriteBool('SpielForm', 'VideoMusik', CheckBoxVideo2.checked);
   INIDatei.WriteBool('SpielForm', 'BenzinAnzeige', CheckBoxBenzin.checked);
   INIDatei.WriteBool('SpielForm', 'LebenAnzeige',
     CheckBoxLebensenergie.checked);
@@ -405,8 +397,6 @@ begin
   Musik3.checked := TempInt = 3;
   Musik4.checked := TempInt = 4;
   Musik5.checked := TempInt = 5;
-  CheckBoxVideo.checked := INIDatei.ReadBool('SpielForm', 'Video', true);
-  CheckBoxVideo2.checked := INIDatei.ReadBool('SpielForm', 'VideoMusik', true);
   CheckBoxBenzin.checked :=
     INIDatei.ReadBool('SpielForm', 'BenzinAnzeige', true);
   CheckBoxLebensenergie.checked :=

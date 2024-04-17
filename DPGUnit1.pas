@@ -21,7 +21,6 @@ type
     Hintergrund: TImage;
     Start: TBitBtn;
     Optionen: TBitBtn;
-    Video: TBitBtn;
     Ende: TBitBtn;
     Los: TBitBtn;
     Abb: TBitBtn;
@@ -38,12 +37,9 @@ type
     procedure OptionenClick(Sender: TObject);
     procedure LosClick(Sender: TObject);
     procedure AbbClick(Sender: TObject);
-    procedure Videoclick(Sender: TObject);
     procedure StartMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
     procedure HintergrundMouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
-    procedure videoMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
     procedure EndeMouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
@@ -65,7 +61,7 @@ var
 implementation
 
 uses
-  DPGGlobal, DPGUnit2, DPGUnit3, DPGUnit4, DPGUnit5, DPGUnit6;
+  DPGGlobal, DPGUnit2, DPGUnit3, DPGUnit4, DPGUnit6;
 
 {$R *.DFM}
 
@@ -79,7 +75,6 @@ procedure TMenuForm.StartClick(Sender: TObject);
 begin
   start.font.color := clwindowtext;
   start.visible := false;
-  video.visible := false;
   Optionen.Visible := false;
   Ende.Visible := false;                                                   
   edit1.visible := true;
@@ -210,7 +205,6 @@ procedure TMenuForm.AbbClick(Sender: TObject);
 begin
   abb.font.color := clwindowtext;
   start.visible := true;
-  video.visible := true;
   Optionen.Visible := true;
   Ende.Visible := true;
   edit1.visible := false;
@@ -222,25 +216,10 @@ begin
   start.SetFocus;
 end;
 
-procedure TMenuForm.Videoclick(Sender: TObject);
-begin
-  video.font.color := clwindowtext;
-  { if EinstellungForm.checkboxvideo.checked=false then
-  begin
-    MessageDLG('Das Anfangsvideo wurde nicht aktiviert!',
-      mtInformation, [mbOK], 0);
-    exit;
-  end; }
-  visible := false;
-  VideoForm.visible := true;
-  VideoForm.setfocus;
-end;
-
 procedure TMenuForm.StartMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
   optionen.font.color := clwindowtext;
-  video.font.color := clwindowtext;
   ende.font.color := clwindowtext;
   los.font.color := clwindowtext;
   abb.font.color := clwindowtext;
@@ -252,21 +231,9 @@ procedure TMenuForm.HintergrundMouseMove(Sender: TObject; Shift: TShiftState; X,
 begin
   start.font.color := clwindowtext;
   optionen.font.color := clwindowtext;
-  video.font.color := clwindowtext;
   ende.font.color := clwindowtext;
   los.font.color := clwindowtext;
   abb.font.color := clwindowtext;
-end;
-
-procedure TMenuForm.videoMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
-  start.font.color := clwindowtext;
-  optionen.font.color := clwindowtext;
-  ende.font.color := clwindowtext;
-  los.font.color := clwindowtext;
-  abb.font.color := clwindowtext;
-  video.font.color := clnavy;
 end;
 
 procedure TMenuForm.EndeMouseMove(Sender: TObject; Shift: TShiftState; X,
@@ -274,7 +241,6 @@ procedure TMenuForm.EndeMouseMove(Sender: TObject; Shift: TShiftState; X,
 begin
   start.font.color := clwindowtext;
   optionen.font.color := clwindowtext;
-  video.font.color := clwindowtext;
   los.font.color := clwindowtext;
   abb.font.color := clwindowtext;
   ende.font.color := clnavy;
@@ -284,7 +250,6 @@ procedure TMenuForm.OptionenMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Integer);
 begin
   start.font.color := clwindowtext;
-  video.font.color := clwindowtext;
   ende.font.color := clwindowtext;
   los.font.color := clwindowtext;
   abb.font.color := clwindowtext;
@@ -296,7 +261,6 @@ procedure TMenuForm.LosMouseMove(Sender: TObject; Shift: TShiftState; X,
 begin
   start.font.color := clwindowtext;
   optionen.font.color := clwindowtext;
-  video.font.color := clwindowtext;
   ende.font.color := clwindowtext;
   abb.font.color := clwindowtext;
   los.font.color := clnavy;
@@ -307,7 +271,6 @@ procedure TMenuForm.AbbMouseMove(Sender: TObject; Shift: TShiftState; X,
 begin
   start.font.color := clwindowtext;
   optionen.font.color := clwindowtext;
-  video.font.color := clwindowtext;
   ende.font.color := clwindowtext;
   los.font.color := clwindowtext;
   abb.font.color := clnavy;
@@ -337,7 +300,6 @@ begin
   Los.Glyph.LoadFromFile(directory+'Bilder\OK.bmp');
   Abb.Glyph.LoadFromFile(directory+'Bilder\Abbrechen.bmp');
   Ende.Glyph.LoadFromFile(directory+'Bilder\Verlassen.bmp');
-  Video.Glyph.LoadFromFile(directory+'Bilder\Video.bmp');
   Optionen.Glyph.LoadFromFile(directory+'Bilder\Buch.bmp');
   CopyLabel1.caption := Copyright;
 end;
