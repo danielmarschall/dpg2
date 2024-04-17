@@ -331,7 +331,7 @@ end;
 
 procedure TMenuForm.FormCreate(Sender: TObject);
 begin
-  VersionLabel.caption := VersionLabel.caption + ' ' + engineversion;
+  VersionLabel.caption := VersionLabel.caption + ' ' + ProgrammVersion;
   Hintergrund.Picture.LoadFromFile(directory+'Bilder\Hintergrund.bmp');
   Start.Glyph.LoadFromFile(directory+'Bilder\OK.bmp');
   Los.Glyph.LoadFromFile(directory+'Bilder\OK.bmp');

@@ -14,8 +14,12 @@ interface
 uses
   MMSystem, SysUtils;
 
+const
+  ProgrammVersion = '1.5e';
+  CopyRight = '(C) 2000-2005';
+
 var
-  EngineVersion, Directory, Copyright: string;
+  Directory: string;
 
 const
   { FPS tiefer = schnellere Bewegungen... }

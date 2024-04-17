@@ -13,7 +13,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
-  Dialogs, Gauges, StdCtrls, ExtCtrls, CoolGauge, PJVersionInfo;
+  Dialogs, Gauges, StdCtrls, ExtCtrls, CoolGauge;
 
 type
   TSplashForm = class(TForm)
@@ -26,7 +26,6 @@ type
     procedure FormDestroy(Sender: TObject);
   public
     { VCL-Ersatz }
-    versioninfo: tpjversioninfo;
     ProgressGge: tcoolgauge;
   end;
 
@@ -42,15 +41,13 @@ uses
 
 procedure TSplashForm.FormShow(Sender: TObject);
 begin
-  NameLabel.caption := NameLabel.caption + ' ' + engineversion;
-  WaitLabel.caption := WaitLabel.caption + ' ' + engineversion;
+  NameLabel.caption := NameLabel.caption + ' ' + ProgrammVersion;
+  WaitLabel.caption := WaitLabel.caption + ' ' + ProgrammVersion;
   Hintergrund.Picture.LoadFromFile(directory+'Bilder\Sterne.bmp');
 end;
 
 procedure TSplashForm.FormCreate(Sender: TObject);
 begin
-  versioninfo := tpjversioninfo.Create(self);
-
   ProgressGge := tcoolgauge.Create(self);
   ProgressGge.Parent := self;
   ProgressGge.ForeColor1 := clRed;
@@ -67,7 +64,6 @@ end;
 
 procedure TSplashForm.FormDestroy(Sender: TObject);
 begin
- versioninfo.free;
  ProgressGge.free;
 end;
 

@@ -1026,7 +1026,7 @@ begin
     'https://www.viathinksoft.de/index.php?page=projektanzeige&seite=projekt-21', '', '', 1);
   if Sender=VerbesserungsEMail then
     ShellExecute(Handle, 'open',
-    pchar('mailto:info@daniel-marschall.de?subject=Verbesserungen zu DPG 2, Version ' + EngineVersion), '', '', 1);
+    pchar('mailto:info@daniel-marschall.de?subject=Verbesserungen zu DPG 2, Version ' + ProgrammVersion), '', '', 1);
 end;
 
 procedure TSpielForm.LeerenClick(Sender: TObject);

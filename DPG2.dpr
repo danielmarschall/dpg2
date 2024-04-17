@@ -32,8 +32,6 @@ uses
 var
   Sem: THandle;
   Fehler: boolean;
-  tempengineversion, tempcopyright: string;
-  i, punkt: integer;
 
 procedure Counter(progress: integer);
 begin
@@ -58,25 +56,6 @@ begin
   Application.Initialize;
   Application.Title := 'Der Panzergeneral 2';
   Application.ShowMainForm := false;
-  { Globale Variablen erstellen! }
-  splashform.versioninfo.filename := paramstr(0);
-  tempengineversion := splashform.versioninfo.ProductVersion;
-  punkt := 0;
-  for i := 1 to length(tempengineversion) do
-  begin
-    if copy(tempengineversion, i, 1) = '.' then inc(punkt);
-    if punkt < 2 then
-      engineversion := engineversion+copy(tempengineversion, i, 1);
-  end;
-  TempCopyright := splashform.versioninfo.LegalCopyright;
-  for i := 1 to length(TempCopyright) do
-  begin
-    if copy(TempCopyright, i, 9) = 'Copyright' then
-    begin
-      Copyright := copy(TempCopyright, 0, i-1) + copy(TempCopyright, i+9,
-        length(TempCopyright)-(i+8)) + '.';
-    end;
-  end;
   { Dateien vorhanden? }
   Fehler := false;
   if not fileexists(directory+'Bilder\Abbrechen.bmp') then Fehler := true;
