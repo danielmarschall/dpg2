@@ -15,8 +15,8 @@ uses
   MMSystem, SysUtils;
 
 const
-  ProgrammVersion = '1.5e';
-  CopyRight = '(C) 2000-2005';
+  ProgrammVersion = '1.5d';
+  CopyRight = '(C) 2000-2005 MD-Technologie'+#13#10+'Techn. Auffrischung 2024';
   DpgRegistrySettings = 'SOFTWARE\ViaThinkSoft\DPG2\Settings';
 
 var

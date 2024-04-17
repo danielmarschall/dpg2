@@ -41,8 +41,6 @@ uses
 
 procedure TSplashForm.FormShow(Sender: TObject);
 begin
-  NameLabel.caption := NameLabel.caption + ' ' + ProgrammVersion;
-  WaitLabel.caption := WaitLabel.caption + ' ' + ProgrammVersion;
   Hintergrund.Picture.LoadFromFile(directory+'Bilder\Sterne.bmp');
 end;
 

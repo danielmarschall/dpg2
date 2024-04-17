@@ -509,20 +509,17 @@ begin
     Brush.Style := bsClear;
     {* Schrift setzen *}
     Textout(0, 329, 'Benzin:');
-    Textout(152, 329, 'Kommentar:');
-    Textout(152, 345, 'Spielzeit:');
+    Textout(152, 329, Kommentar);
+    Textout(152, 345, 'Spielzeit:  ' + IntToStr(Spielzeit));
     Textout(427, 329, 'Lebensenergie:');
-    Textout(103, 345, Spieler1Name);
-    // Zu erledigen: LEFTTEMP ANWENDEN!
-    Textout(386, 345, Spieler2Name);
-    Textout(216, 345, IntToStr(Spielzeit));
-    Textout(216, 329, Kommentar);
+    Textout(102, 345, Spieler1Name);
+    Textout(380, 345, Spieler2Name);
     if EinstellungForm.checkboxBenzin.checked then
     begin
-      templeft := 91;
-      if length(Inttostr(DinoLeben)) = 1 then templeft := 91;
-      if length(Inttostr(DinoLeben)) = 2 then templeft := 85;
-      if length(Inttostr(DinoLeben)) = 3 then templeft := 79;
+      templeft := 90;
+      if length(Inttostr(PanzerBenzin)) = 1 then templeft := 90;
+      if length(Inttostr(PanzerBenzin)) = 2 then templeft := 84;
+      if length(Inttostr(PanzerBenzin)) = 3 then templeft := 78;
       Textout(templeft, 329, IntToStr(PanzerBenzin));
     end;
     if EinstellungForm.checkboxLebensenergie.checked then
@@ -701,6 +698,11 @@ begin
       exit;
     end;
   end;
+  if VPanzStp then
+    Kommentar:='Panzermotor ausgeschaltet'
+  else
+    Kommentar:='';
+
   if not freegamer then
   begin
     if Spielzeit=60 then

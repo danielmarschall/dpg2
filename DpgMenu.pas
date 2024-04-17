@@ -29,7 +29,6 @@ type
     VersionLabel: TLabel;
     CopyPanel: TPanel;
     CopyLabel1: TLabel;
-    CopyLabel2: TLabel;
     Name1: TLabel;
     Name2: TLabel;
     procedure EndeClick(Sender: TObject);

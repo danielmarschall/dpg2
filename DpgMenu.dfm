@@ -167,19 +167,5 @@ object MenuForm: TMenuForm
       ParentFont = False
       Transparent = True
     end
-    object CopyLabel2: TLabel
-      Left = 3
-      Top = 18
-      Width = 142
-      Height = 13
-      Caption = 'Alle Rechte vorbehalten!'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clBlack
-      Font.Height = -11
-      Font.Name = 'MS Sans Serif'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
   end
 end
