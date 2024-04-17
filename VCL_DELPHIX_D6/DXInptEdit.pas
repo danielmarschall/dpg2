@@ -12,8 +12,8 @@ type
     Player1: TMenuItem;
     Player2_1: TMenuItem;
     Player2_2: TMenuItem;
-    OKButton: TBitBtn;
-    CancelButton: TBitBtn;
+    OKButton: TButton;
+    CancelButton: TButton;
     PageControl: TPageControl;
     JoyTabSheet: TTabSheet;
     KeyTabSheet: TTabSheet;

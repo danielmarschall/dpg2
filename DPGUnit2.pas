@@ -14,7 +14,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Menus, Buttons, Gauges, ExtCtrls, ShellAPI, StdCtrls, ImgList,
-  DXSounds, DXInput, DXSprite, DXClass, DXDraws, mmsystem, wininet;
+  DXSounds, DXInput, DXSprite, DXClass, DXDraws, mmsystem, wininet,
+  System.ImageList, System.UITypes;
 
 type
   TSpielForm = class(TDXForm)
@@ -129,7 +130,8 @@ var
 implementation
 
 uses
-  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DPGUnit5;
+  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DPGUnit5,
+  DirectX;
 
 {$R *.DFM}
 

@@ -14,14 +14,12 @@ object SpielForm: TSpielForm
   Font.Style = []
   KeyPreview = True
   Menu = Menu
-  OldCreateOrder = True
   Position = poDesktopCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnHide = FormHide
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object Menu: TMainMenu
     Images = ImageList

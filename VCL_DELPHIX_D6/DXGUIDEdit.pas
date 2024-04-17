@@ -9,9 +9,9 @@ uses
 type
   TDelphiXGUIDEditForm = class(TForm)
     Edit: TEdit;
-    OKButton: TBitBtn;
-    CancelButton: TBitBtn;
-    NewButton: TBitBtn;
+    OKButton: TButton;
+    CancelButton: TButton;
+    NewButton: TButton;
     procedure NewButtonClick(Sender: TObject);
     procedure EditChange(Sender: TObject);
     procedure CancelButtonClick(Sender: TObject);

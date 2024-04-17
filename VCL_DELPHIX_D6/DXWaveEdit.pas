@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, SysUtils, Classes, Forms, Dialogs, Controls, StdCtrls, ExtCtrls,
-  Buttons, ComCtrls, DXSounds, Wave, Graphics;
+  Buttons, ComCtrls, DXSounds, DXWave, Graphics;
 
 type
 
@@ -12,17 +12,17 @@ type
 
   TDelphiXWaveEditForm = class(TForm)
     Bevel2: TBevel;
-    OKButton: TBitBtn;
-    CancelButton: TBitBtn;
+    OKButton: TButton;
+    CancelButton: TButton;
     SaveDialog: TSaveDialog;
     OpenDialog: TOpenDialog;
     PlayImage: TImage;
     StopImage: TImage;
     Timer: TTimer;
     DXSound: TDXSound;
-    ClearButton: TBitBtn;
-    SaveButton: TBitBtn;
-    LoadButton: TBitBtn;
+    ClearButton: TButton;
+    SaveButton: TButton;
+    LoadButton: TButton;
     Panel1: TPanel;
     TrackBar: TTrackBar;
     TestButton: TSpeedButton;

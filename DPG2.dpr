@@ -18,6 +18,7 @@ uses
   Controls,
   Forms,
   Dialogs,
+  System.UITypes,
   DPGUnit1 in 'DPGUnit1.pas' {MenuForm},
   DPGUnit2 in 'DPGUnit2.pas' {SpielForm},
   DPGUnit3 in 'DPGUnit3.pas' {HilfeForm},

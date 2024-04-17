@@ -13,7 +13,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  StdCtrls, ExtCtrls, Buttons, INIFiles;
+  StdCtrls, ExtCtrls, Buttons, INIFiles, System.UITypes;
 
 type
   TEinstellungForm = class(TForm)

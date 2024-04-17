@@ -9,8 +9,8 @@ uses
 type
   TDelphiXFFEditForm = class(TForm)
     ListGroupBox: TGroupBox;
-    AddButton: TBitBtn;
-    DelButton: TBitBtn;
+    AddButton: TButton;
+    DelButton: TButton;
     EditGroupBox: TGroupBox;
     EffectTypeBox: TComboBox;
     EffectTypeLabel: TLabel;
@@ -30,15 +30,15 @@ type
     TimeLabel2: TLabel;
     AttackTimeEditLabel: TLabel;
     AttackTimeEdit: TSpinEdit;
-    RunButton: TBitBtn;
-    RunGroupButton: TBitBtn;
-    OKButton: TBitBtn;
-    CancelButton: TBitBtn;
+    RunButton: TButton;
+    RunGroupButton: TButton;
+    OKButton: TButton;
+    CancelButton: TButton;
     DXInput: TDXInput;
     NameEditLabel: TLabel;
     NameEdit: TEdit;
     Bevel1: TBevel;
-    StopButton: TBitBtn;
+    StopButton: TButton;
     PopupMenu: TPopupMenu;
     A1: TMenuItem;
     DeleteEffectItem: TMenuItem;
@@ -48,7 +48,7 @@ type
     N1: TMenuItem;
     N2: TMenuItem;
     SaveToFileItem: TMenuItem;
-    AddFromFileButton: TBitBtn;
+    AddFromFileButton: TButton;
     OpenDialog: TOpenDialog;
     SaveDialog: TSaveDialog;
     EffectView: TTreeView;

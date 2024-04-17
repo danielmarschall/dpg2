@@ -13,13 +13,11 @@ object EinstellungForm: TEinstellungForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = True
   Position = poDesktopCenter
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnMouseMove = FormMouseMove
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object DinoLbl: TLabel
     Left = 8

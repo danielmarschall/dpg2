@@ -1,21 +1,21 @@
 unit DXPictEdit;
-
+{$INCLUDE DelphiXcfg.inc}
 interface
 
 uses
   Windows, SysUtils, Classes, Forms, Dialogs, Controls, StdCtrls, ExtCtrls,
-  ExtDlgs, DIB, Menus, Graphics, Clipbrd;
+  ExtDlgs, DIB, Menus, Graphics, Clipbrd {$IFDEF VER28UP}, PNGImage{$ENDIF};
 
 type
 
   {  TDelphiXDIBEditForm  }
 
   TDelphiXPictureEditForm = class(TForm)
-    LoadButton: TBitBtn;
-    SaveButton: TBitBtn;
-    ClearButton: TBitBtn;
-    OKButton: TBitBtn;
-    CancelButton: TBitBtn;
+    LoadButton: TButton;
+    SaveButton: TButton;
+    ClearButton: TButton;
+    OKButton: TButton;
+    CancelButton: TButton;
     Panel1: TPanel;
     Bevel1: TBevel;
     NoneLabel: TLabel;
@@ -27,7 +27,7 @@ type
     SaveDialog: TSavePictureDialog;
     BitSizeLabel: TLabel;
     ViewBox: TImage;
-    ConvertToDIB: TBitBtn;
+    ConvertToDIB: TButton;
     ClassNameLabel: TLabel;
     PopupMenu1: TPopupMenu;
     geConvertColor: TMenuItem;
