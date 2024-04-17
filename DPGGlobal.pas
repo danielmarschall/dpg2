@@ -16,7 +16,7 @@ uses
 
 const
   ProgrammVersion = '1.5d';
-  CopyRight = '(C) 2000-2005 MD-Technologie'+#13#10+'Techn. Auffrischung 2024';
+  CopyRight = '(C) 2000-2005 MD-Technologie'+#13#10+'Technische Auffrischung 2024';
   DpgRegistrySettings = 'SOFTWARE\ViaThinkSoft\DPG2\Settings';
 
 var

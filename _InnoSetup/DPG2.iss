@@ -1,4 +1,4 @@
-; DPG 2 Setup Script for InnoSetup 5.1.9
+; DPG 2 Setup Script for InnoSetup
 ; by Daniel Marschall
 
 ; Shut-Down Game?!
@@ -6,8 +6,8 @@
 [Setup]
 AppName=Der Panzergeneral II
 AppVerName=Der Panzergeneral II 1.5
-AppVersion=1.5
-AppCopyright=© Copyright 2000 - 2007 ViaThinkSoft.
+AppVersion=1.5d
+AppCopyright=© Copyright 2000 - 2005 MD-Technologie.
 AppPublisher=ViaThinkSoft
 AppPublisherURL=https://www.viathinksoft.de/
 AppSupportURL=https://www.md-technologie.de/
@@ -15,7 +15,7 @@ AppUpdatesURL=https://www.viathinksoft.de/
 DefaultDirName={pf}\Der Panzergeneral 2
 DefaultGroupName=Der Panzergeneral 2
 VersionInfoCompany=ViaThinkSoft
-VersionInfoCopyright=© Copyright 2000 - 2007 ViaThinkSoft.
+VersionInfoCopyright=© Copyright 2000 - 2005 MD-Technologie.
 VersionInfoDescription=Der Panzergeneral II 1.5 Setup
 VersionInfoTextVersion=1.0.0.0
 VersionInfoVersion=1.5
@@ -33,8 +33,8 @@ Name: de; MessagesFile: "compiler:Languages\German.isl"
 LanguageName=Deutsch
 LanguageID=$0407
 
-[Tasks]
-Name: "desktopicon"; Description: "Erstelle eine Verknüpfung auf dem &Desktop"; GroupDescription: "Programmverknüpfungen:"; MinVersion: 4,4
+;[Tasks]
+;Name: "desktopicon"; Description: "Erstelle eine Verknüpfung auf dem &Desktop"; GroupDescription: "Programmverknüpfungen:"; MinVersion: 4,4
 
 [Files]
 Source: "..\DPG2.exe"; DestDir: "{app}"; Flags: ignoreversion signonce
@@ -45,18 +45,19 @@ Source: "..\DirectX\Grafik.dxg"; DestDir: "{app}\DirectX"; Flags: ignoreversion
 Source: "..\Musik\*.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
 Source: "..\Texte\*.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\*.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
+Source: "..\DPG2 Hilfe\*.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 
-[Folders]
-Name: "{group}\Webseiten"
+;[Folders]
+;Name: "{group}\Webseiten"
 
 [Icons]
 ;Name: "{group}\Webseiten\Daniel Marschalls Webportal"; Filename: "https://www.daniel-marschall.de/"
 ;Name: "{group}\Webseiten\MD-Technologie"; Filename: "https://www.md-technologie.de/"
 ;Name: "{group}\Webseiten\ViaThinkSoft"; Filename: "https://www.viathinksoft.de/"
 ;Name: "{group}\Webseiten\Projektseite auf ViaThinkSoft"; Filename: "https://www.viathinksoft.de/index.php?page=projektanzeige&seite=projekt-21"
-Name: "{group}\DPG 2 Hilfe"; Filename: "{app}\Hilfe.exe"
+;Name: "{group}\DPG 2 Hilfe"; Filename: "{app}\Hilfe.exe"
 Name: "{group}\Der Panzergeneral 2"; Filename: "{app}\DPG2.exe"
-Name: "{userdesktop}\Der Panzergeneral 2"; Filename: "{app}\DPG2.exe"; MinVersion: 4,4; Tasks: desktopicon
+;Name: "{userdesktop}\Der Panzergeneral 2"; Filename: "{app}\DPG2.exe"; MinVersion: 4,4; Tasks: desktopicon
 ;Name: "{group}\Der Panzergeneral 2 deinstallieren"; Filename: "{uninstallexe}"
 
 [Run]

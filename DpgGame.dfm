@@ -31,13 +31,13 @@ object SpielForm: TSpielForm
       object Neustart: TMenuItem
         Caption = '&Neustart'
         ImageIndex = 0
-        ShortCut = 112
+        ShortCut = 113
         OnClick = NeustartClick
       end
       object Pause: TMenuItem
         Caption = '&Pause'
         ImageIndex = 2
-        ShortCut = 113
+        ShortCut = 114
         OnClick = pauseClick
       end
       object Leer1: TMenuItem
@@ -46,7 +46,7 @@ object SpielForm: TSpielForm
       object Hauptmenue: TMenuItem
         Caption = '&Zur'#252'ck zum Hauptmen'#252
         ImageIndex = 2
-        ShortCut = 114
+        ShortCut = 115
         OnClick = HauptmenueClick
       end
       object Beenden: TMenuItem
@@ -119,31 +119,27 @@ object SpielForm: TSpielForm
     object Hilfe: TMenuItem
       Caption = '&Hilfe'
       ImageIndex = 6
-      object Geschichte: TMenuItem
-        Caption = '&Geschichte'
-        ImageIndex = 6
-        ShortCut = 119
-        OnClick = HilfeClick
-      end
-      object Ziel: TMenuItem
-        Caption = '&Ziel'
-        ImageIndex = 6
-        ShortCut = 120
-        OnClick = HilfeClick
-      end
-      object Steuerung: TMenuItem
-        Caption = '&Steuerung'
-        ImageIndex = 6
-        ShortCut = 121
+      object Hilfe1: TMenuItem
+        Caption = '&Hilfe'
+        ShortCut = 112
         OnClick = HilfeClick
       end
       object Leer4: TMenuItem
         Caption = '-'
       end
-      object Info: TMenuItem
-        Caption = '&Informationen'
-        ImageIndex = 8
-        ShortCut = 122
+      object Geschichte: TMenuItem
+        Caption = '&Geschichte'
+        ImageIndex = 6
+        OnClick = HilfeClick
+      end
+      object Ziel: TMenuItem
+        Caption = '&Ziel'
+        ImageIndex = 6
+        OnClick = HilfeClick
+      end
+      object Steuerung: TMenuItem
+        Caption = '&Steuerung'
+        ImageIndex = 6
         OnClick = HilfeClick
       end
       object Leer5: TMenuItem
@@ -152,7 +148,11 @@ object SpielForm: TSpielForm
       object Mitwirkende: TMenuItem
         Caption = '&Mitwirkende'
         ImageIndex = 7
-        ShortCut = 123
+        OnClick = HilfeClick
+      end
+      object Info: TMenuItem
+        Caption = '&Informationen'
+        ImageIndex = 8
         OnClick = HilfeClick
       end
     end

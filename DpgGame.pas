@@ -48,6 +48,7 @@ type
     Updates: TMenuItem;
     N1: TMenuItem;
     Link2: TMenuItem;
+    Hilfe1: TMenuItem;
     procedure dxdrawFinalize(Sender: TObject);
     procedure dxdrawInitialize(Sender: TObject);
     procedure DXTimerTimer(Sender: TObject; LagCount: Integer);
@@ -303,10 +304,11 @@ begin
   Collisioned := False;
   DinoColli := true;
   if EinstellungForm.checkBoxSound.checked and soundkarte then
-    SpielForm.dxwavelist.items.find('Getötet').play(false);
+    SpielForm.dxwavelist.items.find('DinoGetroffen').play(false);
   if EinstellungForm.Blut.checked then
     Image := SpielForm.dxImageList.Items.Find('Blut')
-  else Image := SpielForm.dxImageList.Items.Find('Explosion');
+  else
+    Image := SpielForm.dxImageList.Items.Find('Explosion');
   Width := Image.Width;
   Height := Image.Height;
   AnimCount := Image.PatternCount;
@@ -609,7 +611,7 @@ begin
         #13#10 + #09 + 'Zeit: ' + Inttostr(Spielzeit) + #13#10);
       CloseFile(daten);
       ende := true;
-      Kommentar:='Was geht ab?!';
+      Kommentar:='Was ist das denn?!';
       MessageDLG('Gleichstand - Keiner hat gewonnen!', mtInformation, [mbOK], 0);
       Kommentar:='';
       MenuForm.start.visible:=true;
@@ -988,43 +990,52 @@ end;
 procedure TSpielForm.HilfeClick(Sender: TObject);
 begin
   dxtimer.enabled := false;
-  if sender=Geschichte then
+  if sender=Hilfe1 then
+  begin
+    ShellExecute(Handle, 'open', PChar(ExtractFilePath(ParamStr(0))+'Hilfe.exe'), '', '', SW_NORMAL);
+  end
+  else if sender=Geschichte then
   begin
     HilfeForm.caption := 'Hilfe';
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Geschichte.txt');
     HilfeForm.CaptionLabel.caption:='Geschichte';
-  end;
-  if sender=Ziel then
+    HilfeForm.showmodal;
+  end
+  else if sender=Ziel then
   begin
     HilfeForm.caption := 'Hilfe';
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Ziel.txt');
     HilfeForm.CaptionLabel.caption:='Ziel';
-  end;
-  if sender=Steuerung then
+    HilfeForm.showmodal;
+  end
+  else if sender=Steuerung then
   begin
     HilfeForm.caption := 'Hilfe';
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Steuerung.txt');
     HilfeForm.CaptionLabel.caption:='Steuerung';
-  end;
-  if sender=Info then
+    HilfeForm.showmodal;
+  end
+  else if sender=Info then
   begin
     HilfeForm.caption := 'Hilfe';
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Informationen.txt');
     HilfeForm.CaptionLabel.caption:='Informationen';
-  end;
-  if sender=Mitwirkende then
+    HilfeForm.showmodal;
+  end
+  else if sender=Mitwirkende then
   begin
     HilfeForm.caption := 'Hilfe';
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Mitwirkende.txt');
     HilfeForm.CaptionLabel.caption:='Mitwirkende';
-  end;
-  if sender=Anzeigen then
+    HilfeForm.showmodal;
+  end
+  else if sender=Anzeigen then
   begin
     HilfeForm.caption := 'HighScores';
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\HighScore.txt');
     HilfeForm.CaptionLabel.caption:='HighScores';
+    HilfeForm.showmodal;
   end;
-  HilfeForm.showmodal;
 end;
 
 procedure TSpielForm.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -1164,6 +1175,7 @@ begin
   internet.bitmap.loadfromfile(directory+'Bilder\Weltkugel.bmp');
   highscore.bitmap.loadfromfile(directory+'Bilder\Buch.bmp');
   hilfe.bitmap.loadfromfile(directory+'Bilder\Fragezeichen.bmp');
+  hilfe1.bitmap.loadfromfile(directory+'Bilder\Fragezeichen.bmp');
 end;
 
 procedure TSpielForm.FormHide(Sender: TObject);
