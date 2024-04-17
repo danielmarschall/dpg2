@@ -65,7 +65,7 @@ object SpielForm: TSpielForm
         OnClick = InternetClick
       end
       object Link2: TMenuItem
-        Caption = 'Zu &Daniel Marschall'#39's Webportal'
+        Caption = 'Zu &Daniel Marschall'#39's Webseite'
         ImageIndex = 3
         OnClick = InternetClick
       end
@@ -85,6 +85,7 @@ object SpielForm: TSpielForm
       object VerbesserungsEMail: TMenuItem
         Caption = '&Verbesserungs E-Mail abschicken'
         ImageIndex = 4
+        Visible = False
         OnClick = InternetClick
       end
       object N1: TMenuItem

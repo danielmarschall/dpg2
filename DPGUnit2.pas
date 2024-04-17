@@ -14,7 +14,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Menus, Buttons, Gauges, ExtCtrls, ShellAPI, StdCtrls, ImgList,
-  DXSounds, DXInput, DXSprite, DXClass, DXDraws, mmsystem, wininet,
+  DXSounds, DXInput, DXSprite, DXClass, DXDraws, wininet,
   System.ImageList, System.UITypes;
 
 type
@@ -84,11 +84,14 @@ type
     dxwavelist: tdxwavelist;
     dxinput: tdxinput;
     dxtimer: tdxtimer;
+    dxmusic: tdxmusic;
     { VCL-Ersatz Ende }
     ende, VPanzStp, gestartet: boolean;
     DinoGaugeFore, PanzerGaugeFore: TColor;
     Kommentar, Spieler1Name, Spieler2Name: string;
     DinoLeben, PanzerBenzin, Spielzeit: integer;
+    procedure PlayMusic(AMidiFile: string);
+    procedure StopMusic;
     procedure Anzeige;
   end;
 
@@ -132,7 +135,8 @@ var
 implementation
 
 uses
-  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DirectX;
+  DPGGlobal, DPGUnit1, DPGUnit3, DPGUnit4, DPGUnit6, DirectX,
+  DirectMusic;
 
 {$R *.DFM}
 
@@ -467,7 +471,7 @@ begin
   end;
   if EinstellungForm.checkboxMusic.checked and soundkarte and
     (not HilfeForm.visible) and SpielForm.visible then
-      MCISendString(pchar('play "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+      PlayMusic(directory+AktuelleMIDI);
 end;
 
 procedure TSpielForm.DXTimerDeactivate(Sender: TObject);
@@ -481,7 +485,7 @@ begin
   end;
   if EinstellungForm.checkboxMusic.checked and soundkarte and
     (not HilfeForm.visible) and SpielForm.visible then
-      MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+      StopMusic;
 end;
 
 procedure TSpielForm.DXTimerTimer(Sender: TObject; LagCount: Integer);
@@ -573,15 +577,6 @@ begin
     Release;
   end;
   dxdraw.Flip;
-  if EinstellungForm.CheckBoxMusic.checked and soundkarte then
-  begin
-    MCISendString(pchar('status "'+directory+AktuelleMIDI+'"'+' mode'), MCIStatus, 255, 0);
-    if MCIStatus = 'stopped' then
-    begin
-      MCISendString(pchar('seek "'+directory+AktuelleMIDI+'"'+' to start'), nil, 255, 0);
-      MCISendString(pchar('play "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
-    end;
-  end;
   inc(durchlauf);
   if durchlauf >= 100 then
   begin
@@ -630,7 +625,7 @@ begin
       MenuForm.los.visible:=false;
       MenuForm.abb.visible:=false;
       if EinstellungForm.checkboxmusic.checked and soundkarte then
-        MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+        StopMusic;
       Visible:=false;
       MenuForm.Visible:=true;
       MenuForm.setfocus;
@@ -664,7 +659,7 @@ begin
       MenuForm.los.visible:=false;
       MenuForm.abb.visible:=false;
       if EinstellungForm.checkboxmusic.checked and soundkarte then
-        MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+        StopMusic;
       Visible:=false;
       MenuForm.Visible:=true;
       MenuForm.setfocus;
@@ -698,7 +693,7 @@ begin
       MenuForm.los.visible:=false;
       MenuForm.abb.visible:=false;
       if EinstellungForm.checkboxmusic.checked and soundkarte then
-        MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);;
+        StopMusic;
       Visible:=false;
       MenuForm.Visible:=true;
       MenuForm.setfocus;
@@ -756,7 +751,7 @@ var
 begin
   dxtimer.enabled := false;
   if EinstellungForm.checkboxMusic.checked and soundkarte then
-    MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+    StopMusic;
   for i := 1 to 8 do cheat[i]:=false;
   freegamer:=false;
   MenuForm.start.visible:=true;
@@ -833,7 +828,7 @@ begin
       AktuelleMIDI := 'Musik\musik4.mid';
     if EinstellungForm.Musik5.checked then
       AktuelleMIDI := 'Musik\musik5.mid';
-    MCISendString(pchar('open "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+    //PlayMusic(directory+AktuelleMIDI);
 
     if not DXSound.Initialized then
     begin
@@ -974,21 +969,14 @@ begin
   begin
     if freegamer then
     begin
-      MCISendString(pchar('close "'+directory+AktuelleMIDI+'"'), nil, 255, 0); // ?
       if EinstellungForm.Musik1.checked then AktuelleMIDI := 'Musik\musik1.mid';
       if EinstellungForm.Musik2.checked then AktuelleMIDI := 'Musik\musik2.mid';
       if EinstellungForm.Musik3.checked then AktuelleMIDI := 'Musik\musik3.mid';
       if EinstellungForm.Musik4.checked then AktuelleMIDI := 'Musik\musik4.mid';
       if EinstellungForm.Musik5.checked then AktuelleMIDI := 'Musik\musik5.mid';
-      MCISendString(pchar('open "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
       freegamer := false;
-    end
-    else
-    begin
-      MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
-      MCISendString(pchar('seek "'+directory+AktuelleMIDI+'"'+' to start'), nil, 255, 0);
     end;
-    MCISendString(pchar('play "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+    PlayMusic(directory+AktuelleMIDI);
   end;
   PanzerBenzin := 0;
   MenuForm.los.click;
@@ -1043,7 +1031,7 @@ begin
   DXSpriteEngine.Engine.Clear;
   DXTimer.enabled := false;
   if soundkarte and EinstellungForm.checkboxmusic.checked then
-    MCISendString(pchar('close "'+directory+AktuelleMIDI+'"'), nil, 255, 0); // NEU!
+    StopMusic;
   dxinput.Destroy;
   dxsound.Finalize;
   dxSpriteEngine.Engine.Clear;
@@ -1060,7 +1048,7 @@ begin
     ShellExecute(Handle, 'open', 'https://www.viathinksoft.de/', '', '', 1);
   if sender=neuesteversion then
     ShellExecute(Handle, 'open',
-    'https://www.viathinksoft.de/index.php?page=projektanzeige&seite=projekt-21', '', '', 1);
+    'https://www.viathinksoft.de/projects/dpg2', '', '', 1);
   if Sender=VerbesserungsEMail then
     ShellExecute(Handle, 'open',
     pchar('mailto:info@daniel-marschall.de?subject=Verbesserungen zu DPG 2, Version ' + ProgrammVersion), '', '', 1);
@@ -1141,6 +1129,9 @@ begin
   dxspriteengine := tdxspriteengine.create(self);
   dxspriteengine.DXDraw := dxdraw;
 
+  dxmusic := TDXMusic.Create(self);
+  dxmusic.DXSound := dxsound;
+
   { Ende VCL-Ersatz }
 
   dxtimer.interval := 1000 div FPS;
@@ -1178,7 +1169,7 @@ begin
   dxtimer.enabled := false;
   gestartet := false;
   if soundkarte and EinstellungForm.checkboxmusic.checked then
-    MCISendString(pchar('close "'+directory+AktuelleMIDI+'"'), nil, 255, 0); // NEU!
+    StopMusic;
 end;
 
 procedure TSpielForm.DXDrawMouseDown(Sender: TObject; Button: TMouseButton;
@@ -1204,11 +1195,8 @@ begin
     freegamer:=true;
     if EinstellungForm.checkboxmusic.checked and soundkarte then
     begin
-      MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
-      MCISendString(pchar('close "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
       AktuelleMIDI := 'Musik\Freegamer.mid';
-      MCISendString(pchar('open "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
-      MCISendString(pchar('play "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+      PlayMusic(directory+AktuelleMIDI);
     end;
   end;
 end;
@@ -1221,7 +1209,7 @@ begin
   begin
     if EinstellungForm.checkboxMusic.checked and soundkarte and
       (not HilfeForm.visible) then
-        MCISendString(pchar('stop "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+        StopMusic;
     pause.bitmap.loadfromfile(directory+'Bilder\OK.bmp');
     pause.caption := 'Spiel &fortsetzen';
   end
@@ -1229,14 +1217,34 @@ begin
   begin
     if EinstellungForm.checkboxMusic.checked and soundkarte and
       (not HilfeForm.visible) then
-        MCISendString(pchar('play "'+directory+AktuelleMIDI+'"'), nil, 255, 0);
+        PlayMusic(directory+AktuelleMIDI);
     pause.bitmap.loadfromfile(directory+'Bilder\Abbrechen.bmp');
     pause.caption := '&Pause';
   end;
 end;
 
+procedure TSpielForm.PlayMusic(AMidiFile: string);
+begin
+  StopMusic;
+  with dxmusic.Midis.Add do
+  begin
+    LoadFromFile(AMidiFile);
+    Init;
+    Load;
+    Play;
+  end;
+end;
+
+procedure TSpielForm.StopMusic;
+begin
+  if dxmusic.Midis.Count = 0 then exit;
+  dxmusic.Midis.Items[0].Stop;
+  dxmusic.Midis.Delete(0);
+end;
+
 procedure TSpielForm.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(dxmusic);
   FreeAndNil(dximagelist);
   FreeAndNil(dxspriteengine);
   FreeAndNil(dxdraw);
