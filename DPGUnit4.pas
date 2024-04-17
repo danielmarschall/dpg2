@@ -262,7 +262,7 @@ begin
     MenuForm.edit2.text:='Name Spieler 2 (Dino)';
   end;
   { Hier wird ein Abstand in der INI-Datei erzeugt... }
-  INIDatei.Free;
+  FreeAndNil(INIDatei);
   AssignFile(daten, Directory+'Einstellungen\DPG2.ini');
   Append(daten);
   WriteLN(daten, '');
@@ -314,7 +314,7 @@ begin
   INIDatei.WriteBool('SpielForm', 'DinoInterval', IVD.checked);
   INIDatei.WriteInteger('SpielForm', 'DinoGeschwindigkeit',
     strtoint(DInterval.text));
-  INIDatei.Free;
+  FreeAndNil(INIDatei);
 end;
 
 procedure TEinstellungForm.PruefungClick(Sender: TObject);
@@ -441,7 +441,7 @@ begin
     INIDatei.ReadString('MenuForm', 'Spieler1', 'Name Spieler 1 (Panzer)');
   MenuForm.Edit2.text :=
     INIDatei.ReadString('MenuForm', 'Spieler2', 'Name Spieler 2 (Dino)');
-  INIDatei.Free;
+  FreeAndNil(INIDatei);
   if not Spielernamen.Checked then
   begin
     MenuForm.Edit1.Text := 'Name Spieler 1 (Panzer)';

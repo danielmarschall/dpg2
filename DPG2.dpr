@@ -55,6 +55,7 @@ begin
   SplashForm.Update;
   Application.Initialize;
   Application.Title := 'Der Panzergeneral 2';
+  Application.MainFormOnTaskBar := true;
   Application.ShowMainForm := false;
   { Dateien vorhanden? }
   Fehler := false;
@@ -118,7 +119,7 @@ begin
   EinstellungForm.LoadINI;
   counter(1);
   SplashForm.Hide;
-  SplashForm.Free;
+  FreeAndNil(SplashForm);
   MenuForm.Visible := not EinstellungForm.checkboxvideo.checked;
   VideoForm.Visible := EinstellungForm.checkboxvideo.checked;
   Application.Run;

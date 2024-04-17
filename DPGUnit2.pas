@@ -1220,13 +1220,13 @@ end;
 
 procedure TSpielForm.FormDestroy(Sender: TObject);
 begin
-  dximagelist.free;
-  dxspriteengine.free;
-  dxdraw.Free;
-  dxwavelist.free;
-  dxsound.free;
-  //dxinput.free;
-  dxtimer.Free;
+  FreeAndNil(dximagelist);
+  FreeAndNil(dxspriteengine);
+  FreeAndNil(dxdraw);
+  FreeAndNil(dxwavelist);
+  FreeAndNil(dxsound);
+  //FreeAndNil(dxinput);
+  FreeAndNil(dxtimer);
 end;
 
 end.

@@ -64,7 +64,7 @@ end;
 
 procedure TSplashForm.FormDestroy(Sender: TObject);
 begin
- ProgressGge.free;
+  FreeAndNil(ProgressGge);
 end;
 
 end.
