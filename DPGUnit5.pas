@@ -97,13 +97,17 @@ end;
 procedure TVideoForm.FormShow(Sender: TObject);
 begin
   weiter.setfocus;
-  AviPlayer.filename := directory+'Videos\Video.avi';
-  AviPlayer.open;
-  VideoPanel2.Width := AviPlayer.DisplayRect.Right;
-  VideoPanel2.Height := AviPlayer.DisplayRect.Bottom;
-  VideoPanel1.Width := VideoPanel2.width+(VideoPanel2.left*2);
-  VideoPanel1.height := VideoPanel2.height+(VideoPanel2.top*2);
-  AviPlayer.play;
+  try
+    AviPlayer.filename := directory+'Videos\Video.avi';
+    AviPlayer.open;
+    VideoPanel2.Width := AviPlayer.DisplayRect.Right;
+    VideoPanel2.Height := AviPlayer.DisplayRect.Bottom;
+    VideoPanel1.Width := VideoPanel2.width+(VideoPanel2.left*2);
+    VideoPanel1.height := VideoPanel2.height+(VideoPanel2.top*2);
+    AviPlayer.play;
+  except
+    VideoTimer.Tag := 1;
+  end;
   if (EinstellungForm.CheckBoxVideo2.Checked) and (soundkarte) then
   begin
     WavePlayer.FileName:=directory+'Videos\Audio.wav';
@@ -132,11 +136,15 @@ end;
 
 procedure TVideoForm.VideoTimerTimer(Sender: TObject);
 begin
+  if TTimer(Sender).Tag = 1 then
+  begin
+    weiter.Click;
+  end;
   if (((EinstellungForm.checkboxvideo2.checked) and
     (WavePlayer.position=WavePlayer.length)) or
     not (EinstellungForm.checkboxvideo2.checked)) and
     (aviplayer.position=aviplayer.length) then
-      weiter.click;
+      TTimer(Sender).Tag := 1;
 end;
 
 end.
