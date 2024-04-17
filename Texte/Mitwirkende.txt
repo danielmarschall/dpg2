@@ -1,0 +1,17 @@
+Programmierung:
+	Michael Düpjohann
+	Daniel Marschall
+
+Anregungen:
+	Björn Frost
+
+Sounds und Grafiken:
+	aus verschiedenen Quellen
+
+Musik:
+	Wolfram Günther
+	Kim Burgaard
+	... und andere
+
+Entwickelt mit Embarcadero Delphi unter Verwendung von unDelphiX von Hiroyuki Hori + Jaro Benes.
+Installer von InnoSetup. Sicherheits-Zertifikat von HickelSOFT.

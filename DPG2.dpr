@@ -84,7 +84,7 @@ begin
   if not fileexists(directory+'Texte\Geschichte.txt') then Fehler := true;
   if not fileexists(directory+'Texte\HighScore.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Informationen.txt') then Fehler := true;
-  if not fileexists(directory+'Texte\Mitarbeiter.txt') then Fehler := true;
+  if not fileexists(directory+'Texte\Mitwirkende.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Steuerung.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Ziel.txt') then Fehler := true;
   if Fehler then

@@ -39,79 +39,13 @@ Name: "desktopicon"; Description: "Erstelle eine Verknüpfung auf dem &Desktop"; 
 [Files]
 Source: "..\DPG2.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Hilfe.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\Bilder\Abbrechen.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Blatt.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Blätter.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Brief.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Buch.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Fragezeichen.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Hintergrund.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Neustart.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\OK.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Standard.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Sterne.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Tastatur.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Verlassen.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Weltkugel.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
-Source: "..\Bilder\Link.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
+Source: "..\Bilder\*.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\DirectX\Audio.dxw"; DestDir: "{app}\DirectX"; Flags: ignoreversion
 Source: "..\DirectX\Grafik.dxg"; DestDir: "{app}\DirectX"; Flags: ignoreversion
 Source: "..\Einstellungen\DPG2.ini"; DestDir: "{app}\Einstellungen"; Flags: ignoreversion
-Source: "..\Musik\Freegamer.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
-Source: "..\Musik\Musik1.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
-Source: "..\Musik\Musik2.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
-Source: "..\Musik\Musik3.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
-Source: "..\Musik\Musik4.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
-Source: "..\Musik\Musik5.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
-Source: "..\Texte\Geschichte.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\Texte\HighScore.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\Texte\Informationen.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\Texte\Mitarbeiter.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\Texte\Steuerung.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\Texte\Ziel.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F3.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f2.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Informationen.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\MD.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\MD.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Mitarbeiter.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Steuerung.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\TuT.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Ziel.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Lizenzvertrag.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\IPf2.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\IPf1.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\IPf.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\IP.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\IP.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\index.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Geschichte.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\Fg.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\FG.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f4.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f5.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F1b.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F2f2.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F5.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F5.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f6.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f3.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f1.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4f.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F4.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F3.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F2f.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F2f1.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F2.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F2.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F1a.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\DM.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\DM.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F1a.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\F1b.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\DPG2.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
-Source: "..\DPG2 Hilfe\DPG2.css"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
+Source: "..\Musik\*.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
+Source: "..\Texte\*.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
+Source: "..\DPG2 Hilfe\*.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 
 [Folders]
 Name: "{group}\Webseiten"

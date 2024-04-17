@@ -39,7 +39,7 @@ type
     Leer4: TMenuItem;
     Info: TMenuItem;
     Leer5: TMenuItem;
-    Mitarbeiter: TMenuItem;
+    Mitwirkende: TMenuItem;
     Leer1: TMenuItem;
     Pause: TMenuItem;
     Leer2: TMenuItem;
@@ -1010,11 +1010,11 @@ begin
     HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Informationen.txt');
     HilfeForm.CaptionLabel.caption:='Informationen';
   end;
-  if sender=Mitarbeiter then
+  if sender=Mitwirkende then
   begin
     HilfeForm.caption := 'Hilfe';
-    HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Mitarbeiter.txt');
-    HilfeForm.CaptionLabel.caption:='Mitarbeiter';
+    HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\Mitwirkende.txt');
+    HilfeForm.CaptionLabel.caption:='Mitwirkende';
   end;
   if sender=Anzeigen then
   begin
@@ -1157,7 +1157,7 @@ begin
   geschichte.bitmap.loadfromfile(directory+'Bilder\Fragezeichen.bmp');
   ziel.bitmap.loadfromfile(directory+'Bilder\Fragezeichen.bmp');
   steuerung.bitmap.loadfromfile(directory+'Bilder\Fragezeichen.bmp');
-  mitarbeiter.bitmap.loadfromfile(directory+'Bilder\Blätter.bmp');
+  Mitwirkende.bitmap.loadfromfile(directory+'Bilder\Blätter.bmp');
   spiel.bitmap.loadfromfile(directory+'Bilder\Tastatur.bmp');
   internet.bitmap.loadfromfile(directory+'Bilder\Weltkugel.bmp');
   highscore.bitmap.loadfromfile(directory+'Bilder\Buch.bmp');

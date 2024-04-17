@@ -149,8 +149,8 @@ object SpielForm: TSpielForm
       object Leer5: TMenuItem
         Caption = '-'
       end
-      object Mitarbeiter: TMenuItem
-        Caption = '&Mitarbeiter'
+      object Mitwirkende: TMenuItem
+        Caption = '&Mitwirkende'
         ImageIndex = 7
         ShortCut = 123
         OnClick = HilfeClick

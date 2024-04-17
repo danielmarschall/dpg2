@@ -1,0 +1,44 @@
+
+2024 Review:
+- Hilfe/Texte prüfen
+- Einstellungen => Registry
+- Mit EV-Zert veröffentlichen
+- TODOs zusammenfassen
+- Die KI ist ziemlich dumm. Dino rennt in die Ecke und bleibt da
+
+
+Alte TODOs (ca. 2005)
+- Bessere Dateiüberprüfung!
+- F2.Ladevorgang mit Splash?!
+- Hilfe besser in BCB4E ?!?!
+- DKI
+- D-Pause?
+- Mouse verlässt Form
+- Schnelligkeit bei GameStart (200)
+- Sterne original
+- Quelltext verbessern / Kommentare / Dinge zusammenfassen
+- Hilfe optimieren!
+- Ruckelige Bewegungen…
+- (Fenster schließen, nicht nur verstecken…)
+- Speicherung nur, wenn Aendung true ist.
+- Wenn Dino Explo → Menü → Spiel → Dann: Kurzes Image von DinoExplo…
+- PKI: Verwirrungsabfrage mit Waldkonstanten verwenden!!!
+- PKI: Wenn manueller Intervall, dann stimmt „Zu“ nicht mehr...
+- HighScore verbessern...
+- FPS einstellen!
+- Größeres Spielfeld
+- Bewegte Figuren?
+- Rechtes DX-Label (Spieler2Name) an DX-Gauge2 drücken!
+- Bewegte Figuren?!
+- Statt Visible lieber Hide und Show!
+- Form 4: Standard: Dino hat hohe KI ?!
+- PLe: Zu = 5 → 3 ?
+- PMi: Zu = 4
+- PSc: Zu = 3 → 5 ?
+- Hilfe im Einstellungsmenü
+- DXG: Nur noch 1 Waldstück verwenden!
+- Wald / Berg – Auswahl
+- Programm wird lahm: (Musik an) Spiel → Menü → Musik aus → Spiel → FEHLER!
+- Soundkartenmeldung wirklich lassen? Besser ein gelbes Zeichen?
+- Wenn Soundkarte false ist, keinen Sound initialisieren!
+- F4: Aenderung auch true setzen, wenn ein checked Objekt nochmals angeklickt wird?!
