@@ -12,14 +12,12 @@ object VideoForm: TVideoForm
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnHide = FormHide
   OnMouseMove = FormMouseMove
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object Weiter: TBitBtn
     Left = 480
@@ -57,27 +55,31 @@ object VideoForm: TVideoForm
       object AviPlayer: TMediaPlayer
         Left = 4
         Top = 326
-        Width = 0
+        Width = 29
         Height = 20
         ColoredButtons = []
         EnabledButtons = [btPlay]
         VisibleButtons = [btPlay]
         AutoRewind = False
+        DoubleBuffered = True
         Display = VideoPanel2
         Visible = False
+        ParentDoubleBuffered = False
         TabOrder = 0
       end
       object WavePlayer: TMediaPlayer
         Left = 36
         Top = 326
-        Width = 0
+        Width = 29
         Height = 20
         ColoredButtons = []
         EnabledButtons = [btPlay]
         VisibleButtons = [btPlay]
         AutoRewind = False
+        DoubleBuffered = True
         Display = WavePlayer
         Visible = False
+        ParentDoubleBuffered = False
         TabOrder = 1
       end
     end

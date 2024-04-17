@@ -13,7 +13,7 @@ object EinstellungForm: TEinstellungForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnMouseMove = FormMouseMove

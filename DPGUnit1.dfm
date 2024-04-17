@@ -13,12 +13,10 @@ object MenuForm: TMenuForm
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = True
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnCreate = FormCreate
   OnMouseMove = HintergrundMouseMove
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object Hintergrund: TImage
     Left = 0

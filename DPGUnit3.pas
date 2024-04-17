@@ -66,7 +66,6 @@ end;
 
 procedure THilfeForm.FormCreate(Sender: TObject);
 begin
-  HilfeForm.Icon.loadfromfile(directory+'Icons\Hilfe.ico');
   HilfeForm.Weiter.Glyph.LoadFromFile(directory+'Bilder\OK.bmp');
 end;
 

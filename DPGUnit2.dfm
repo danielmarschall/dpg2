@@ -14,7 +14,7 @@ object SpielForm: TSpielForm
   Font.Style = []
   KeyPreview = True
   Menu = Menu
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
