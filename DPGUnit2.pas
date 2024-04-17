@@ -137,7 +137,17 @@ uses
 
 {$R *.DFM}
 
-{$R WindowsXP.RES}
+const
+  isBtnPanzerUp    = TDXInputState(0);
+  isBtnPanzerDown  = TDXInputState(1);
+  isBtnPanzerLeft  = TDXInputState(2);
+  isBtnPanzerRight = TDXInputState(3);
+  isBtnPanzerStopp = TDXInputState(4);
+  isBtnPanzerStart = TDXInputState(5);
+  isBtnDinoUp      = TDXInputState(6);
+  isBtnDinoDown    = TDXInputState(7);
+  isBtnDinoLeft    = TDXInputState(8);
+  isBtnDinoRight   = TDXInputState(9);
 
 var
   DinoX, DinoY, PanzerX, PanzerY: double;
@@ -268,10 +278,10 @@ begin
     end
     else
     begin
-      if isButton3 in SpielForm.DXInput.States then DinoMove(MoveCount, rUp);
-      if isButton4 in SpielForm.DXInput.States then DinoMove(MoveCount, rDown);
-      if isButton5 in SpielForm.DXInput.States then DinoMove(MoveCount, rLeft);
-      if isButton6 in SpielForm.DXInput.States then DinoMove(MoveCount, rRight);
+      if isBtnDinoUp    in SpielForm.DXInput.States then DinoMove(MoveCount, rUp);
+      if isBtnDinoDown  in SpielForm.DXInput.States then DinoMove(MoveCount, rDown);
+      if isBtnDinoLeft  in SpielForm.DXInput.States then DinoMove(MoveCount, rLeft);
+      if isBtnDinoRight in SpielForm.DXInput.States then DinoMove(MoveCount, rRight);
     end;
     if X<1 then X := 1;
     if X>SpielForm.dxdraw.width-(Width+1) then
@@ -417,7 +427,7 @@ begin
       if isDown in SpielForm.DXInput.States then PanzerMove(MoveCount, rDown);
       if isLeft in SpielForm.DXInput.States then PanzerMove(MoveCount, rLeft);
       if isRight in SpielForm.DXInput.States then PanzerMove(MoveCount, rRight);
-      if (isButton1 in SpielForm.DXInput.States) and (not FPanzerStop) then
+      if (isBtnPanzerStopp in SpielForm.DXInput.States) and (not FPanzerStop) then
       begin
         if EinstellungForm.checkboxsound.checked and soundkarte then
           SpielForm.dxwavelist.items.find('PanzerStop').play(false);
@@ -437,7 +447,7 @@ begin
   end
   else
   begin
-    if (isButton2 in SpielForm.DXInput.States) and fpanzerstop then
+    if (isBtnPanzerStart in SpielForm.DXInput.States) and fpanzerstop then
     begin
       if EinstellungForm.checkboxsound.checked and soundkarte then
         SpielForm.dxwavelist.items.find('PanzerStart').play(false);
@@ -1114,6 +1124,18 @@ begin
   dxinput := tdxinput.Create(self);
   dxinput.Joystick.ForceFeedback := true;
   dxinput.Keyboard.ForceFeedback := true;
+
+  // Bitte synchron halten mit auch Texte\Steuerung.txt
+  dxinput.Keyboard.KeyAssigns[isBtnPanzerUp,0] := Ord('W');
+  dxinput.Keyboard.KeyAssigns[isBtnPanzerDown,0] := Ord('S');
+  dxinput.Keyboard.KeyAssigns[isBtnPanzerLeft,0] := Ord('A');
+  dxinput.Keyboard.KeyAssigns[isBtnPanzerRight,0] := Ord('D');
+  dxinput.Keyboard.KeyAssigns[isBtnPanzerStopp,0] := Ord('Q');
+  dxinput.Keyboard.KeyAssigns[isBtnPanzerStart,0] := Ord('E');
+  dxinput.Keyboard.KeyAssigns[isBtnDinoUp,0] := Ord('I');
+  dxinput.Keyboard.KeyAssigns[isBtnDinoDown,0] := Ord('K');
+  dxinput.Keyboard.KeyAssigns[isBtnDinoLeft,0] := Ord('J');
+  dxinput.Keyboard.KeyAssigns[isBtnDinoRight,0] := Ord('L');
 
   dxwavelist := tdxwavelist.Create(self);
   dxwavelist.DXSound := dxsound;

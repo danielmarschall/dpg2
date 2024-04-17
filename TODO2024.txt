@@ -8,5 +8,3 @@ Einstellungen => Registry
 Mit EV-Zert veröffentlichen
 
 TODOs zusammenfassen
-
-Steuerung funktioniert nicht
