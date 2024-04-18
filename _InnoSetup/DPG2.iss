@@ -43,6 +43,7 @@ Source: "..\Bilder\*.bmp"; DestDir: "{app}\Bilder"; Flags: ignoreversion
 Source: "..\DirectX\Audio.dxw"; DestDir: "{app}\DirectX"; Flags: ignoreversion
 Source: "..\DirectX\Grafik.dxg"; DestDir: "{app}\DirectX"; Flags: ignoreversion
 Source: "..\Musik\*.mid"; DestDir: "{app}\Musik"; Flags: ignoreversion
+Source: "..\Musik\Tracks.ini"; DestDir: "{app}\Musik"; Flags: ignoreversion
 Source: "..\Texte\*.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\*.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\*.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion

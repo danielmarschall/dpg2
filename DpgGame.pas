@@ -709,21 +709,21 @@ begin
   begin
     // TODO: Diese Kommentare sind doch gar nicht sichtbar, es sei denn man stoppt den Motor
     if (Spielzeit>=60) and (Spielzeit<=65) then
-      Kommentar:='Sie sollten sich etwas beeilen!';
-    if (Spielzeit>=120) and (Spielzeit<=125) then
-      Kommentar:='Ihr Gegner schläft gleich ein!';
-    if (Spielzeit>=180) and (Spielzeit<=185) then
-      Kommentar:='Wird das heute noch was?!';
-    if (Spielzeit>=240) and (Spielzeit<=245) then
-      Kommentar:='Jetzt beeilen Sie sich endlich!';
-    if (Spielzeit>=300) and (Spielzeit<=300) then
-      Kommentar:='Wir haben nicht unendlich Zeit!';
-    if (Spielzeit>=365) and (Spielzeit<=370) then
-      Kommentar:='Dino: Du kriegst mich nicht, ätsch!';
-    if (Spielzeit>=430) and (Spielzeit<=435) then
-      Kommentar:='Dino: schnarch... schnarch...';
-    if (Spielzeit>=495) and (Spielzeit<=500) then
-      Kommentar:='LANGWEILIG!!!';
+      Kommentar:='Sie sollten sich etwas beeilen!'
+    else if (Spielzeit>=120) and (Spielzeit<=125) then
+      Kommentar:='Ihr Gegner schläft gleich ein!'
+    else if (Spielzeit>=180) and (Spielzeit<=185) then
+      Kommentar:='Wird das heute noch was?!'
+    else if (Spielzeit>=240) and (Spielzeit<=245) then
+      Kommentar:='Jetzt beeilen Sie sich endlich!'
+    else if (Spielzeit>=300) and (Spielzeit<=300) then
+      Kommentar:='Wir haben nicht unendlich Zeit!'
+    else if (Spielzeit>=365) and (Spielzeit<=370) then
+      Kommentar:='Dino: Du kriegst mich nicht, ätsch!'
+    else if (Spielzeit>=430) and (Spielzeit<=435) then
+      Kommentar:='Dino: schnarch... schnarch...'
+    else if (Spielzeit>=495) and (Spielzeit<=500) then
+      Kommentar:='LANGWEILIG!!!'
     else
        Kommentar:='';
   end

@@ -23,7 +23,7 @@ var
   Directory: string;
 
 const
-  { FPS tiefer = schnellere Bewegungen... }
+  { FPS niedriger = schnellere Bewegungen... }
   FPS = 295; { in Version 1.4: 215 }
   Wald1L = 33;
   Wald1T = 193;

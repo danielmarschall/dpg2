@@ -87,7 +87,7 @@ var
 implementation
 
 uses
-  DPGGlobal, DpgMenu, DpgGame, DpgHilfe, DpgSplash, Registry;
+  DPGGlobal, DpgMenu, DpgGame, DpgHilfe, DpgSplash, Registry, IniFiles;
 
 {$R *.DFM}
 
@@ -328,8 +328,22 @@ begin
 end;
 
 procedure TEinstellungForm.FormShow(Sender: TObject);
+var
+  ini: TMemIniFile;
 begin
   pruefung;
+
+  ini := TMemIniFile.Create(Directory+'Musik\Tracks.ini');
+  try
+    Musik1.Caption := ini.ReadString('Tracks', 'Track1', Musik1.Caption);
+    Musik2.Caption := ini.ReadString('Tracks', 'Track2', Musik2.Caption);
+    Musik3.Caption := ini.ReadString('Tracks', 'Track3', Musik3.Caption);
+    Musik4.Caption := ini.ReadString('Tracks', 'Track4', Musik4.Caption);
+    Musik5.Caption := ini.ReadString('Tracks', 'Track5', Musik5.Caption);
+  finally
+    FreeAndNil(ini);
+  end;
+
   ok.setfocus;
 end;
 

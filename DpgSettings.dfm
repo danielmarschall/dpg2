@@ -81,6 +81,7 @@ object EinstellungForm: TEinstellungForm
     Width = 129
     Height = 25
     Caption = '&OK'
+    Default = True
     TabOrder = 0
     OnClick = OKClick
     OnMouseMove = OKMouseMove
@@ -90,6 +91,7 @@ object EinstellungForm: TEinstellungForm
     Top = 320
     Width = 129
     Height = 25
+    Cancel = True
     Caption = '&Abbrechen'
     TabOrder = 18
     OnClick = AbbClick
@@ -235,9 +237,9 @@ object EinstellungForm: TEinstellungForm
   object Musik1: TRadioButton
     Left = 24
     Top = 136
-    Width = 66
+    Width = 105
     Height = 17
-    Caption = 'Inception'
+    Caption = 'Track 1'
     Checked = True
     TabOrder = 17
     TabStop = True
@@ -246,36 +248,36 @@ object EinstellungForm: TEinstellungForm
   object Musik2: TRadioButton
     Left = 24
     Top = 152
-    Width = 52
+    Width = 105
     Height = 17
-    Caption = 'Beat it'
+    Caption = 'Track 2'
     TabOrder = 5
     OnClick = OptionChange
   end
   object Musik3: TRadioButton
     Left = 24
     Top = 168
-    Width = 60
+    Width = 105
     Height = 17
-    Caption = 'Meeting'
+    Caption = 'Track 3'
     TabOrder = 6
     OnClick = OptionChange
   end
   object Musik4: TRadioButton
     Left = 24
     Top = 184
-    Width = 92
+    Width = 105
     Height = 17
-    Caption = 'Chemical Plant'
+    Caption = 'Track 4'
     TabOrder = 7
     OnClick = OptionChange
   end
   object Musik5: TRadioButton
     Left = 24
     Top = 200
-    Width = 40
+    Width = 113
     Height = 17
-    Caption = 'Foo'
+    Caption = 'Track 5'
     TabOrder = 8
     OnClick = OptionChange
   end
