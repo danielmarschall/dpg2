@@ -9,8 +9,6 @@
 
 program DPG2;
 
-{$DESCRIPTION 'Der Panzergeneral II 1.5'}
-
 uses
   Windows,
   Messages,

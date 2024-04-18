@@ -7,19 +7,20 @@
 AppName=Der Panzergeneral II
 AppVerName=Der Panzergeneral II 1.5
 AppVersion=1.5d
-AppCopyright=© Copyright 2000 - 2005 MD-Technologie.
+AppCopyright=© Copyright 2000 - 2005 MD-Technologie
 AppPublisher=ViaThinkSoft
 AppPublisherURL=https://www.viathinksoft.de/
 AppSupportURL=https://www.md-technologie.de/
 AppUpdatesURL=https://www.viathinksoft.de/
-DefaultDirName={pf}\Der Panzergeneral 2
+DefaultDirName={autopf}\Der Panzergeneral 2
 DefaultGroupName=Der Panzergeneral 2
 VersionInfoCompany=ViaThinkSoft
-VersionInfoCopyright=© Copyright 2000 - 2005 MD-Technologie.
+VersionInfoCopyright=© Copyright 2000 - 2005 MD-Technologie
 VersionInfoDescription=Der Panzergeneral II 1.5 Setup
 VersionInfoTextVersion=1.0.0.0
 VersionInfoVersion=1.5
-Compression=zip/9
+OutputBaseFilename=DPG2_Setup
+OutputDir=.
 ; Configure Sign Tool in InnoSetup at "Tools => Configure Sign Tools" (adjust the path to your SVN repository location)
 ; Name    = sign_single   
 ; Command = "C:\SVN\...\sign_single.bat" $f
@@ -47,6 +48,7 @@ Source: "..\Musik\Tracks.ini"; DestDir: "{app}\Musik"; Flags: ignoreversion
 Source: "..\Texte\*.txt"; DestDir: "{app}\Texte"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\*.jpg"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 Source: "..\DPG2 Hilfe\*.htm"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
+Source: "..\DPG2 Hilfe\*.css"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 
 ;[Folders]
 ;Name: "{group}\Webseiten"

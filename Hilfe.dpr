@@ -9,8 +9,6 @@
 
 program Hilfe;
 
-{Description 'Der Panzergeneral II 1.5 - Hilfe'}
-
 uses
   ShellAPI,
   Sysutils,

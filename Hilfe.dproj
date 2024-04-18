@@ -89,7 +89,7 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_Release>4</VerInfo_Release>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=ViaThinkSoft;FileDescription=Der Panzergeneral 2;FileVersion=1.5.4.0;InternalName=DPG2;LegalCopyright=(C) 2000-2005 Michael Düpjohann und Daniel Marschall;LegalTrademarks=;OriginalFilename=Hilfe.exe;ProductName=Der Panzergeneral 2;ProductVersion=1.5.4;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=ViaThinkSoft;FileDescription=Der Panzergeneral 2;FileVersion=1.5.4.0;InternalName=DPG2;LegalCopyright=(C) 2000-2005 Michael Düpjohann und Daniel Marschall;LegalTrademarks=;OriginalFilename=Hilfe.exe;ProductName=Der Panzergeneral 2;ProductVersion=1.5.4;Comments=Technische Auffrischung 2024;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -126,8 +126,8 @@
                     <Source Name="MainSource">Hilfe.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
