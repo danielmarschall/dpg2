@@ -2,7 +2,6 @@
 TODOs (2024 Review):
 - Hilfe/Texte prüfen bzw. übearbeiten
 - Die KI ist ziemlich dumm. Dino rennt in die Ecke und bleibt da
-- Spielstände in "My Games" sichern
 
 Alte TODOs (ca. 2005):
 - Bessere Dateiüberprüfung!

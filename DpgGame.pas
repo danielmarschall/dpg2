@@ -71,11 +71,14 @@ type
     procedure pauseClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure UpdatesClick(Sender: TObject);
+  private
+    procedure RewriteHighScoreFile;
   protected
     daten: textfile;
     Zu: Integer;
     PS, Freegamer: boolean;
     cheat: array[1..8] of boolean;
+    function GetHighScoreFile: string;
   public
     { VCL-Ersatz }
     dxdraw: TDxDraw;
@@ -137,7 +140,7 @@ implementation
 
 uses
   DPGGlobal, DpgMenu, DpgHilfe, DpgSettings, DpgSplash, DirectX,
-  DirectMusic;
+  DirectMusic, ActiveX, ShlObj, TlHelp32;
 
 {$R *.DFM}
 
@@ -159,11 +162,120 @@ var
   Dinocolli, splpause: boolean;
   AktuelleMIDI: string;
 
+const
+  FOLDERID_SavedGames: TGuid = '{4C5C32FF-BB9D-43b0-B5B4-2D72E54EAAA4}';
+
+function GetKnownFolderPath(const rfid: TGUID): string;
+var
+  OutPath: PWideChar;
+begin
+  // https://www.delphipraxis.net/135471-unit-zur-verwendung-von-shgetknownfolderpath.html
+  if ShGetKnownFolderPath(rfid, 0, 0, OutPath) {>= 0} = S_OK then
+  begin
+    Result := OutPath;
+    // From MSDN
+    // ppszPath [out]
+    // Type: PWSTR*
+    // When this method returns, contains the address of a pointer to a null-terminated Unicode string that specifies the path of the known folder
+    // The calling process is responsible for freeing this resource once it is no longer needed by calling CoTaskMemFree.
+    // The returned path does not include a trailing backslash. For example, "C:\Users" is returned rather than "C:\Users\".
+    CoTaskMemFree(OutPath);
+  end
+  else
+  begin
+    Result := '';
+  end;
+end;
+
+// http://www.delphipraxis.net/post43515.html
+Function GetHTML(AUrl: string): string;
+var
+  databuffer : array[0..4095] of char;
+  ResStr : string;
+  hSession, hfile: hInternet;
+  dwindex,dwcodelen,dwread,dwNumber: cardinal;
+  dwcode : array[1..20] of char;
+  res    : pchar;
+  Str    : pchar;
+begin
+  ResStr:='';
+  if (system.pos('http://',lowercase(AUrl))=0) and
+     (system.pos('https://',lowercase(AUrl))=0) then
+     AUrl:='http://'+AUrl;
+
+  // Hinzugefügt
+  application.ProcessMessages;
+
+  hSession:=InternetOpen('InetURL:/1.0',
+                         INTERNET_OPEN_TYPE_PRECONFIG,
+                         nil,
+                         nil,
+                         0);
+  if assigned(hsession) then
+  begin
+    // Hinzugefügt
+    application.ProcessMessages;
+
+    hfile:=InternetOpenUrl(
+           hsession,
+           pchar(AUrl),
+           nil,
+           0,
+           INTERNET_FLAG_RELOAD,
+           0);
+    dwIndex  := 0;
+    dwCodeLen := 10;
+
+    // Hinzugefügt
+    application.ProcessMessages;
+
+    HttpQueryInfo(hfile,
+                  HTTP_QUERY_STATUS_CODE,
+                  @dwcode,
+                  dwcodeLen,
+                  dwIndex);
+    res := pchar(@dwcode);
+    dwNumber := sizeof(databuffer)-1;
+    if (res ='200') or (res ='302') then
+    begin
+      while (InternetReadfile(hfile,
+                              @databuffer,
+                              dwNumber,
+                              DwRead)) do
+      begin
+
+        // Hinzugefügt
+        application.ProcessMessages;
+
+        if dwRead =0 then
+          break;
+        databuffer[dwread]:=#0;
+        Str := pchar(@databuffer);
+        resStr := resStr + Str;
+      end;
+    end
+    else
+      ResStr := 'Status:'+res;
+    if assigned(hfile) then
+      InternetCloseHandle(hfile);
+  end;
+
+  // Hinzugefügt
+  application.ProcessMessages;
+
+  InternetCloseHandle(hsession);
+  Result := resStr;
+end;
+
+{ TWald }
+
 constructor TWald.Create(AParent: TSprite);
 begin
   inherited Create(AParent);
   Z := 4;
 end;
+
+{ TBackground }
 
 constructor TBackground.Create(AParent: TSprite);
 begin
@@ -172,14 +284,7 @@ begin
   Z := 0;
 end;
 
-constructor TPanzer.Create(AParent: TSprite);
-begin
-  inherited Create(AParent);
-  Image := SpielForm.DXImageList.Items.Find('PanzerR');
-  Width := Image.Width;
-  Height := Image.Height;
-  Z := 1;
-end;
+{ TDino }
 
 constructor TDino.Create(AParent: TSprite);
 begin
@@ -332,6 +437,17 @@ begin
   end;
 end;
 
+{ TPanzer }
+
+constructor TPanzer.Create(AParent: TSprite);
+begin
+  inherited Create(AParent);
+  Image := SpielForm.DXImageList.Items.Find('PanzerR');
+  Width := Image.Width;
+  Height := Image.Height;
+  Z := 1;
+end;
+
 procedure TPanzer.DoCollision(Sprite: TSprite; var Done: Boolean);
 begin
   if Sprite is TDino then
@@ -462,6 +578,19 @@ begin
   end;
 end;
 
+{ TSpielForm }
+
+function TSpielForm.GetHighScoreFile: string;
+begin
+  result := GetKnownFolderPath(FOLDERID_SavedGames);
+  if result = '' then
+    result := Directory+'Texte'
+  else
+    result := IncludeTrailingPathDelimiter(result)+'DPG2';
+  ForceDirectories(Result);
+  result := IncludeTrailingPathDelimiter(Result) + 'HighScore.txt';
+end;
+
 procedure TSpielForm.DXTimerActivate(Sender: TObject);
 begin
   Caption := Application.Title;
@@ -495,6 +624,7 @@ var
   MCIStatus: array[0..255] of char;
   l, t, w, h: integer;
   templeft: integer;
+  fil: string;
 begin
   if ((not SpielForm.dxdraw.CanDraw) or (SpielForm.ende)) or
     (not SpielForm.dxdraw.CanDraw) and (SpielForm.ende) then exit;
@@ -603,7 +733,9 @@ begin
       dxtimer.enabled := false;
       if EinstellungForm.checkBoxSound.checked and soundkarte then
         dxwavelist.items.find('Gewonnen').play(false);
-      Assignfile(daten, directory+'Texte\HighScore.txt');
+      fil := GetHighScoreFile;
+      if not FileExists(fil) then RewriteHighScoreFile;
+      Assignfile(daten, fil);
       Append(daten);
       WriteLN(daten, datetostr(date) + ' - ' + timetostr(time) + ':' +
         #13#10 + #09 + Spieler1Name + ' (Panzer): ' + Inttostr(PanzerBenzin) +
@@ -636,7 +768,9 @@ begin
       dxtimer.enabled := false;
       if EinstellungForm.checkBoxSound.checked and soundkarte then
         dxwavelist.items.find('Gewonnen').play(false);
-      Assignfile(daten, directory+'Texte\HighScore.txt');
+      fil := GetHighScoreFile;
+      if not FileExists(fil) then RewriteHighScoreFile;
+      Assignfile(daten, fil);
       Append(daten);
       WriteLN(daten, datetostr(date) + ' - ' + timetostr(time) + ':' +
         #13#10 + #09 + Spieler1Name + ' (Panzer): ' + Inttostr(PanzerBenzin) +
@@ -670,7 +804,9 @@ begin
       dxtimer.enabled := false;
       if EinstellungForm.checkBoxSound.checked and soundkarte then
         dxwavelist.items.find('Gewonnen').play(false);
-      Assignfile(daten, directory+'Texte\HighScore.txt');
+      fil := GetHighScoreFile;
+      if not FileExists(fil) then RewriteHighScoreFile;
+      Assignfile(daten, fil);
       Append(daten);
       WriteLN(daten, datetostr(date) + ' - ' + timetostr(time) + ':' + #13#10 +
         #09 + Spieler1Name + ' (Panzer): ' + Inttostr(PanzerBenzin) + #13#10 +
@@ -849,86 +985,6 @@ begin
   SpielForm.anzeige;
 end;
 
-// http://www.delphipraxis.net/post43515.html
-Function GetHTML(AUrl: string): string;
-var
-  databuffer : array[0..4095] of char;
-  ResStr : string;
-  hSession, hfile: hInternet;
-  dwindex,dwcodelen,dwread,dwNumber: cardinal;
-  dwcode : array[1..20] of char;
-  res    : pchar;
-  Str    : pchar;
-begin
-  ResStr:='';
-  if (system.pos('http://',lowercase(AUrl))=0) and
-     (system.pos('https://',lowercase(AUrl))=0) then
-     AUrl:='http://'+AUrl;
-
-  // Hinzugefügt
-  application.ProcessMessages;
-
-  hSession:=InternetOpen('InetURL:/1.0',
-                         INTERNET_OPEN_TYPE_PRECONFIG,
-                         nil,
-                         nil,
-                         0);
-  if assigned(hsession) then
-  begin
-    // Hinzugefügt
-    application.ProcessMessages;
-
-    hfile:=InternetOpenUrl(
-           hsession,
-           pchar(AUrl),
-           nil,
-           0,
-           INTERNET_FLAG_RELOAD,
-           0);
-    dwIndex  := 0;
-    dwCodeLen := 10;
-
-    // Hinzugefügt
-    application.ProcessMessages;
-
-    HttpQueryInfo(hfile,
-                  HTTP_QUERY_STATUS_CODE,
-                  @dwcode,
-                  dwcodeLen,
-                  dwIndex);
-    res := pchar(@dwcode);
-    dwNumber := sizeof(databuffer)-1;
-    if (res ='200') or (res ='302') then
-    begin
-      while (InternetReadfile(hfile,
-                              @databuffer,
-                              dwNumber,
-                              DwRead)) do
-      begin
-
-        // Hinzugefügt
-        application.ProcessMessages;
-
-        if dwRead =0 then
-          break;
-        databuffer[dwread]:=#0;
-        Str := pchar(@databuffer);
-        resStr := resStr + Str;
-      end;
-    end
-    else
-      ResStr := 'Status:'+res;
-    if assigned(hfile) then
-      InternetCloseHandle(hfile);
-  end;
-
-  // Hinzugefügt
-  application.ProcessMessages;
-
-  InternetCloseHandle(hsession);
-  Result := resStr; 
-end;
-
 procedure TSpielForm.UpdatesClick(Sender: TObject);
 var
   temp: string;
@@ -983,6 +1039,8 @@ begin
 end;
 
 procedure TSpielForm.HilfeClick(Sender: TObject);
+var
+  fil: string;
 begin
   dxtimer.enabled := false;
   if sender=Hilfe1 then
@@ -1027,7 +1085,9 @@ begin
   else if sender=Anzeigen then
   begin
     HilfeForm.caption := 'HighScores';
-    HilfeForm.TextMemo.lines.loadfromfile(directory+'Texte\HighScore.txt');
+    fil := GetHighScoreFile;
+    if not FileExists(fil) then RewriteHighScoreFile;
+    HilfeForm.TextMemo.lines.loadfromfile(fil);
     HilfeForm.CaptionLabel.caption:='HighScores';
     HilfeForm.showmodal;
   end;
@@ -1062,17 +1122,22 @@ begin
     pchar('mailto:info@daniel-marschall.de?subject=Verbesserungen zu DPG 2, Version ' + ProgrammVersion), '', '', 1);
 end;
 
+procedure TSpielForm.RewriteHighScoreFile;
+begin
+  Assignfile(daten, GetHighScoreFile);
+  Rewrite(daten);
+  WriteLN(daten, 'HighScores in DPG II:');
+  WriteLN(daten, '=====================');
+  WriteLN(daten);
+  CloseFile(daten);
+end;
+
 procedure TSpielForm.LeerenClick(Sender: TObject);
 begin
   if MessageDlg('Wirklich alle HighScores löschen?',
     mtConfirmation, [mbYes, mbNo], 0) = mrYes then
   begin
-    AssignFile(daten, 'Texte\HighScore.txt');
-    Rewrite(daten);
-    WriteLN(daten, 'HighScores in DPG II:');
-    WriteLN(daten, '=====================');
-    WriteLN(daten);
-    CloseFile(daten);
+    RewriteHighScoreFile;
   end;
 end;
 

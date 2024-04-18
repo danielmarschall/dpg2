@@ -81,7 +81,6 @@ begin
   if not fileexists(directory+'Musik\Musik4.mid') then Fehler := true;
   if not fileexists(directory+'Musik\Musik5.mid') then Fehler := true;
   if not fileexists(directory+'Texte\Geschichte.txt') then Fehler := true;
-  if not fileexists(directory+'Texte\HighScore.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Informationen.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Mitwirkende.txt') then Fehler := true;
   if not fileexists(directory+'Texte\Steuerung.txt') then Fehler := true;
