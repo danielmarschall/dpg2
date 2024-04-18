@@ -17,7 +17,7 @@ Version 1.5d stellt die technische Überarbeitung des Spiels 1.5c (ca. Jahr 2005
 - Musik mit DirectMusic anstelle mit MCI abgespielt (besserer Sound, weniger Lags)
 - Fenster öffnen sich in Bildschirm-Mitte und nicht Desktop-Mitte (das ist ein Unterschied bei Multi-Monitor-Systemen)
 - Steuerung funktioniert nun auf allen Tastaturen wie erwünscht
-- Kommunikation mit Update-Server findet über HTTPS anstelle HTTP statt
+- Kommunikation mit Update-Server findet über HTTPS anstelle HTTP
 - Ein paar unnötige Funktionen entfernt
 - Einstellungen werden in der Registry gespeichert (anstelle dem Programmverzeichnis)
 - Highscore wird im Ordner "Gespeicherte Spiele" gespeichert (anstelle dem Programmverzeichnis)
@@ -25,5 +25,5 @@ Version 1.5d stellt die technische Überarbeitung des Spiels 1.5c (ca. Jahr 2005
 - Codesignatur hinzugefügt
 - Veröffentlichung per SVN und GitHub
 
-Die Arbeit an diesem Update hat viele nostalgische Gefühle hervorgerufen;
+Die Arbeit an diesem Update hat viele nostalgische Gefühle geweckt;
 dieser technische letzte Feinschliff schließt das Projekt aber nun endgültig ab.
