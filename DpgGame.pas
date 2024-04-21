@@ -187,16 +187,16 @@ begin
   end;
 end;
 
-// http://www.delphipraxis.net/post43515.html
-Function GetHTML(AUrl: string): string;
+// https://www.delphipraxis.net/post43515.html , fixed , works for Delphi 12 Athens
+function GetHTML(AUrl: string): RawByteString;
 var
-  databuffer : array[0..4095] of char;
-  ResStr : string;
+  databuffer : array[0..4095] of ansichar; // SIC! ansichar!
+  ResStr : ansistring; // SIC! ansistring
   hSession, hfile: hInternet;
   dwindex,dwcodelen,dwread,dwNumber: cardinal;
   dwcode : array[1..20] of char;
   res    : pchar;
-  Str    : pchar;
+  Str    : pansichar; // SIC! pansichar
 begin
   ResStr:='';
   if (system.pos('http://',lowercase(AUrl))=0) and
@@ -204,7 +204,7 @@ begin
      AUrl:='http://'+AUrl;
 
   // Hinzugefügt
-  application.ProcessMessages;
+  if Assigned(Application) then Application.ProcessMessages;
 
   hSession:=InternetOpen('InetURL:/1.0',
                          INTERNET_OPEN_TYPE_PRECONFIG,
@@ -214,7 +214,7 @@ begin
   if assigned(hsession) then
   begin
     // Hinzugefügt
-    application.ProcessMessages;
+    if Assigned(Application) then application.ProcessMessages;
 
     hfile:=InternetOpenUrl(
            hsession,
@@ -227,7 +227,7 @@ begin
     dwCodeLen := 10;
 
     // Hinzugefügt
-    application.ProcessMessages;
+    if Assigned(Application) then application.ProcessMessages;
 
     HttpQueryInfo(hfile,
                   HTTP_QUERY_STATUS_CODE,
@@ -236,7 +236,7 @@ begin
                   dwIndex);
     res := pchar(@dwcode);
     dwNumber := sizeof(databuffer)-1;
-    if (res ='200') or (res ='302') then
+    if (res ='200') or (res = '302') then
     begin
       while (InternetReadfile(hfile,
                               @databuffer,
@@ -245,23 +245,23 @@ begin
       begin
 
         // Hinzugefügt
-        application.ProcessMessages;
+        if Assigned(Application) then application.ProcessMessages;
 
         if dwRead =0 then
           break;
         databuffer[dwread]:=#0;
-        Str := pchar(@databuffer);
+        Str := pansichar(@databuffer);
         resStr := resStr + Str;
       end;
     end
     else
-      ResStr := 'Status:'+res;
+      ResStr := 'Status:'+AnsiString(res);
     if assigned(hfile) then
       InternetCloseHandle(hfile);
   end;
 
   // Hinzugefügt
-  application.ProcessMessages;
+  if Assigned(Application) then application.ProcessMessages;
 
   InternetCloseHandle(hsession);
   Result := resStr;
@@ -987,7 +987,7 @@ end;
 
 procedure TSpielForm.UpdatesClick(Sender: TObject);
 var
-  temp: string;
+  temp: RawByteString;
 begin
   temp := GetHTML('https://www.viathinksoft.de/update/?id=dpg2');
   if copy(temp, 0, 7) = 'Status:' then
@@ -996,7 +996,7 @@ begin
   end
   else
   begin
-    if GetHTML('https://www.viathinksoft.de/update/?id=dpg2') <> '1.5c' then
+    if GetHTML('https://www.viathinksoft.de/update/?id=dpg2') <> ProgrammVersion then
     begin
       if Application.MessageBox('Eine neue Programmversion ist vorhanden. Möchten Sie diese jetzt herunterladen?', 'Information', MB_YESNO + MB_ICONASTERISK) = ID_YES then
         shellexecute(application.handle, 'open', pchar('https://www.viathinksoft.de/update/?id=@dpg2'), '', '', sw_normal);
