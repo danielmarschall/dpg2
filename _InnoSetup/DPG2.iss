@@ -60,7 +60,7 @@ Source: "..\DPG2 Hilfe\*.css"; DestDir: "{app}\DPG2 Hilfe"; Flags: ignoreversion
 ;Name: "{group}\Webseiten\Projektseite auf ViaThinkSoft"; Filename: "https://www.viathinksoft.de/index.php?page=projektanzeige&seite=projekt-21"
 ;Name: "{group}\DPG 2 Hilfe"; Filename: "{app}\Hilfe.exe"
 Name: "{group}\Der Panzergeneral 2"; Filename: "{app}\DPG2.exe"
-;Name: "{userdesktop}\Der Panzergeneral 2"; Filename: "{app}\DPG2.exe"; MinVersion: 4,4; Tasks: desktopicon
+;Name: "{autodesktop}\Der Panzergeneral 2"; Filename: "{app}\DPG2.exe"; MinVersion: 4,4; Tasks: desktopicon
 ;Name: "{group}\Der Panzergeneral 2 deinstallieren"; Filename: "{uninstallexe}"
 
 [Run]
